@@ -1,0 +1,6 @@
+{
+  "name": "Vardhan Hotel",
+  "description": "A luxury vegetarian boutique hotel and restaurant website featuring extensive separate dining menus and an AI concierge recommender.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
