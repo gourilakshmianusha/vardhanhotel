@@ -352,6 +352,71 @@ export default function HomePage() {
     }
   }, []);
 
+  // Dynamic SEO Synchronization for each dynamic "page" tab
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Define SEO configuration for each hotel console state
+    const seoConfig = {
+      home: {
+        title: "Vardhhan Hospitality | Premium Boutique Hotel & Pure Vegetarian Suites Hubballi",
+        description: "Experience premium boutique hospitality, refined suites, Ayurvedic-focused wellness, and exquisite 100% vegetarian culinary dining in Hubballi at Vardhhan Hotel & Kitchen."
+      },
+      about: {
+        title: "Our Heritage & Culinary Philosophy | Vardhhan Hospitality",
+        description: "Discover the founding philosophy, architectural details, and local vegetarian heritage supporting Vardhhan's luxury boutique offerings."
+      },
+      menu: {
+        title: "The Bistro Menu & Culinary Collection | Vardhhan Kitchen",
+        description: "Explore the live heirloom vegetarian menu at Vardhhan Kitchen. High-quality traditional sensory culinary dishes crafted in Hubballi, Karnataka."
+      },
+      blog: {
+        title: "Chronicles of Wellness & Gastronomy | Vardhhan Editorial",
+        description: "Explore custom curated journals on wholesome vegetarian diets, heritage highlights, and hotel luxury wellness guides at Vardhhan."
+      },
+      contact: {
+        title: "Reserve Your Experience & Suites | Vardhhan Contact Console",
+        description: "Contact Vardhhan Hospitality in Hubballi, Karnataka. Book your premium luxury suites or make restaurant dining reservations online."
+      },
+      reviews: {
+        title: "Guest Chronicles & Testimonials | Vardhhan Guestbook",
+        description: "Read authentic testimonials, local dining reviews, and luxury hospitality stories verified by our exquisite guests."
+      },
+      admin: {
+        title: "Administrative Control Console | Vardhhan Security",
+        description: "Sign into Vardhhan kitchen administration to control menu databases, manage editorial articles, and perform core stewardship reviews securely."
+      }
+    };
+
+    const currentSeo = seoConfig[activeTab] || seoConfig.home;
+
+    // Update document title
+    document.title = currentSeo.title;
+
+    // Update meta description
+    let descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) {
+      descMeta.setAttribute('content', currentSeo.description);
+    } else {
+      descMeta = document.createElement('meta');
+      descMeta.setAttribute('name', 'description');
+      descMeta.setAttribute('content', currentSeo.description);
+      document.head.appendChild(descMeta);
+    }
+
+    // Update OpenGraph description
+    const ogDescMeta = document.querySelector('meta[property="og:description"]');
+    if (ogDescMeta) {
+      ogDescMeta.setAttribute('content', currentSeo.description);
+    }
+
+    // Update OpenGraph title
+    const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+    if (ogTitleMeta) {
+      ogTitleMeta.setAttribute('content', currentSeo.title);
+    }
+  }, [activeTab]);
+
   // Blog carousels
   const blogCarouselImages = [
     {
@@ -941,6 +1006,82 @@ export default function HomePage() {
 
   return (
     <div id="hotel-app" className="min-h-screen flex flex-col justify-between bg-[#FAF9F5] text-[#1C1917] selection:bg-[#EAE5D9]">
+      
+      {/* LOCAL BUSINESS ARCHITECTURAL SCHEMA JSON-LD STRUCTURE */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Hotel",
+                "@id": "https://vardhhan.com/#hotel",
+                "name": "Vardhhan Hospitality",
+                "description": "Experience premium boutique hospitality, refined suites, Ayurvedic-focused wellness, and exquisite 100% vegetarian culinary dining in Hubballi at Vardhhan Hotel & Kitchen.",
+                "url": "https://vardhhan.com",
+                "logo": "https://vardhhan.com/logo.png",
+                "image": "https://vardhhan.com/seo_featured_image.png",
+                "telephone": "+91-836-235-CARE",
+                "priceRange": "$$$",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Gokul Road, near Airport",
+                  "addressLocality": "Hubballi",
+                  "addressRegion": "Karnataka",
+                  "postalCode": "580030",
+                  "addressCountry": "IN"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": "15.3644",
+                  "longitude": "75.1244"
+                },
+                "amenityFeature": [
+                  {
+                    "@type": "LocationFeatureSpecification",
+                    "name": "100% Pure Vegetarian Kitchen",
+                    "value": true
+                  },
+                  {
+                    "@type": "LocationFeatureSpecification",
+                    "name": "Luxury Wellness Suites",
+                    "value": true
+                  },
+                  {
+                    "@type": "LocationFeatureSpecification",
+                    "name": "Ayurvedic Spa & Herbal Lounge",
+                    "value": true
+                  },
+                  {
+                    "@type": "LocationFeatureSpecification",
+                    "name": "Caretaker Concierge Service",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "@type": "Restaurant",
+                "@id": "https://vardhhan.com/#restaurant",
+                "name": "Vardhhan Culinary Kitchen",
+                "description": "Timed heirloom gourmet Bistro with 100% organic pure vegetarian regional delights and traditional Ayurvedic ingredients.",
+                "url": "https://vardhhan.com/menu",
+                "telephone": "+91-836-235-CARE",
+                "servesCuisine": "South Indian, Pure Vegetarian, Ayurvedic, Wellness",
+                "priceRange": "$$",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Gokul Road, near Airport",
+                  "addressLocality": "Hubballi",
+                  "addressRegion": "Karnataka",
+                  "postalCode": "580030",
+                  "addressCountry": "IN"
+                }
+              }
+            ]
+          })
+        }}
+      />
       
       {/* HEADER NAVIGATION */}
       <header id="app-header" className="sticky top-0 z-50 bg-[#FAF9F5]/90 backdrop-blur-md border-b border-[#EAE5D9]">

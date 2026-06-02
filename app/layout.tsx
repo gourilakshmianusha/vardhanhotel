@@ -15,8 +15,50 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Vardhan Hotel | Pure Vegetarian & Suites",
-  description: "Experience premium boutique hospitality, refined suites, and exceptional 100% vegetarian culinary dining in Hubballi at Vardhan Hotel.",
+  title: {
+    default: "Vardhhan Hospitality | Premium Boutique Hotel & Pure Vegetarian Suites Hubballi",
+    template: "%s | Vardhhan Hospitality"
+  },
+  description: "Experience premium boutique hospitality, refined suites, Ayurvedic-focused wellness, and exquisite 100% vegetarian culinary dining in Hubballi at Vardhhan Hotel & Kitchen.",
+  keywords: ["Vardhhan Hotel", "Vardhhan Kitchen", "pure vegetarian restaurant Hubballi", "luxury boutique hotel Hubballi", "hotel near Hubli", "vegetarian dining Karnataka", "wellness hotel karnataka", "Vardhhan luxury suites"],
+  authors: [{ name: "Vardhhan Hospitality Team" }],
+  creator: "Vardhhan Hospitality",
+  metadataBase: new URL("https://vardhhan.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://vardhhan.com",
+    title: "Vardhhan Hospitality | Premium Boutique Hotel & Dietary Suites",
+    description: "Indulge in pure vegetarian culinary heritage, Ayurvedic wellness, and luxury suites at Vardhhan Hotel & Kitchen, Hubballi.",
+    siteName: "Vardhhan Hospitality",
+    images: [
+      {
+        url: "/seo_featured_image.png",
+        width: 1200,
+        height: 630,
+        alt: "Vardhhan Hotel - Timeless Luxury and Pure Vegetarian Dining Pavilion",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vardhhan Hospitality | Boutique Hotel & Pure Veg Kitchen",
+    description: "Experience premium boutique suites and organic pure-vegetarian dining curated with heritage and love in Hubballi, Karnataka.",
+    images: ["/seo_featured_image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
