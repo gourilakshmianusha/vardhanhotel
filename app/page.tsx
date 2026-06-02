@@ -360,31 +360,38 @@ export default function HomePage() {
     const seoConfig = {
       home: {
         title: "Vardhhan Hospitality | Premium Boutique Hotel & Pure Vegetarian Suites Hubballi",
-        description: "Experience premium boutique hospitality, refined suites, Ayurvedic-focused wellness, and exquisite 100% vegetarian culinary dining in Hubballi at Vardhhan Hotel & Kitchen."
+        description: "Experience premium boutique hospitality, refined suites, Ayurvedic-focused wellness, and exquisite 100% vegetarian culinary dining in Hubballi at Vardhhan Hotel & Kitchen.",
+        image: "/seo_featured_image.png"
       },
       about: {
         title: "Our Heritage & Culinary Philosophy | Vardhhan Hospitality",
-        description: "Discover the founding philosophy, architectural details, and local vegetarian heritage supporting Vardhhan's luxury boutique offerings."
+        description: "Discover the founding philosophy, architectural details, and local vegetarian heritage supporting Vardhhan's luxury boutique offerings.",
+        image: "/seo_about.png"
       },
       menu: {
         title: "The Bistro Menu & Culinary Collection | Vardhhan Kitchen",
-        description: "Explore the live heirloom vegetarian menu at Vardhhan Kitchen. High-quality traditional sensory culinary dishes crafted in Hubballi, Karnataka."
+        description: "Explore the live heirloom vegetarian menu at Vardhhan Kitchen. High-quality traditional sensory culinary dishes crafted in Hubballi, Karnataka.",
+        image: "/seo_menu.png"
       },
       blog: {
         title: "Chronicles of Wellness & Gastronomy | Vardhhan Editorial",
-        description: "Explore custom curated journals on wholesome vegetarian diets, heritage highlights, and hotel luxury wellness guides at Vardhhan."
+        description: "Explore custom curated journals on wholesome vegetarian diets, heritage highlights, and hotel luxury wellness guides at Vardhhan.",
+        image: "/seo_blog.png"
       },
       contact: {
         title: "Reserve Your Experience & Suites | Vardhhan Contact Console",
-        description: "Contact Vardhhan Hospitality in Hubballi, Karnataka. Book your premium luxury suites or make restaurant dining reservations online."
+        description: "Contact Vardhhan Hospitality in Hubballi, Karnataka. Book your premium luxury suites or make restaurant dining reservations online.",
+        image: "/seo_contact.png"
       },
       reviews: {
         title: "Guest Chronicles & Testimonials | Vardhhan Guestbook",
-        description: "Read authentic testimonials, local dining reviews, and luxury hospitality stories verified by our exquisite guests."
+        description: "Read authentic testimonials, local dining reviews, and luxury hospitality stories verified by our exquisite guests.",
+        image: "/seo_reviews.png"
       },
       admin: {
         title: "Administrative Control Console | Vardhhan Security",
-        description: "Sign into Vardhhan kitchen administration to control menu databases, manage editorial articles, and perform core stewardship reviews securely."
+        description: "Sign into Vardhhan kitchen administration to control menu databases, manage editorial articles, and perform core stewardship reviews securely.",
+        image: "/seo_featured_image.png"
       }
     };
 
@@ -414,6 +421,28 @@ export default function HomePage() {
     const ogTitleMeta = document.querySelector('meta[property="og:title"]');
     if (ogTitleMeta) {
       ogTitleMeta.setAttribute('content', currentSeo.title);
+    }
+
+    // Update OpenGraph image
+    let ogImgMeta = document.querySelector('meta[property="og:image"]');
+    if (ogImgMeta) {
+      ogImgMeta.setAttribute('content', currentSeo.image);
+    } else {
+      ogImgMeta = document.createElement('meta');
+      ogImgMeta.setAttribute('property', 'og:image');
+      ogImgMeta.setAttribute('content', currentSeo.image);
+      document.head.appendChild(ogImgMeta);
+    }
+
+    // Update Twitter image
+    let twImgMeta = document.querySelector('meta[name="twitter:image"]');
+    if (twImgMeta) {
+      twImgMeta.setAttribute('content', currentSeo.image);
+    } else {
+      twImgMeta = document.createElement('meta');
+      twImgMeta.setAttribute('name', 'twitter:image');
+      twImgMeta.setAttribute('content', currentSeo.image);
+      document.head.appendChild(twImgMeta);
     }
   }, [activeTab]);
 
