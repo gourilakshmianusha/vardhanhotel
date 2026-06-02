@@ -11,156 +11,156 @@ export interface MenuItem {
 }
 
 export const HOTEL_MENU: MenuItem[] = [
-  // BREAKFAST
+  // BREAKFAST (Strictly eggless & pure vegetarian)
   {
     id: 'b1',
-    name: 'Vanilla Bean French Toast',
-    description: 'Brioche soaked in Tahitian vanilla custard, fresh seasonal farm berries, warm organic maple syrup, and whipped Chantilly.',
-    price: 22,
+    name: 'Vardhhan Royal Ghee Roast Dosa',
+    description: 'Crispy, golden-brown rice crepe brushed with premium Gir cow A2 ghee, served with fresh coconut chutney, tangy tomato-onion relish, and piping hot hand-ground sambar.',
+    price: 180,
     category: 'breakfast',
-    tags: ['Vegetarian'],
+    tags: ['Signature', 'Pure Vegetarian', 'Gluten-Free Option'],
     isChefSpecial: true,
-    image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'b2',
-    name: 'Avocado Tartine & Poached Egg',
-    description: 'Smashed organic avocado, heirloom tomatoes, pickled red onions, micro-greens, toasted artisan sourdough, cold-pressed olive oil, and organic poached egg.',
-    price: 19,
+    name: 'Millet Rava Idli with Saffron Accent',
+    description: 'Steamed organic kodo-millet and local lentil cakes infused with cashew nuts, ginger, and fresh green chilies. Served with cooling mint-coriander dip.',
+    price: 150,
     category: 'breakfast',
-    tags: ['Vegetarian', 'Healthy'],
-    image: 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=600&auto=format&fit=crop&q=80'
+    tags: ['Healthy', 'Pure Vegetarian'],
+    image: 'https://images.unsplash.com/photo-1589301760014-d571583d3ce1?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'b3',
-    name: 'Vardhan Truffled Eggs Benedict',
-    description: 'Sautéed organic forest mushrooms, organic poached eggs, fresh dill bernaise sauce, toasted English muffin, served with crisp rosemary-garlic fingerling potatoes.',
-    price: 26,
+    name: 'Sattvic Avocado & Toasted Amaranth Poha',
+    description: 'Flattened red rice dry-tossed with roasted split peanuts, fresh curry leaves, mustard seeds, grated fresh coconut, topped with seasoned avocado pearls.',
+    price: 190,
     category: 'breakfast',
-    tags: ['Signature', 'Vegetarian'],
+    tags: ['Healthy', 'Pure Vegetarian', 'Vegan'],
     isChefSpecial: true,
-    image: 'https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=600&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'b4',
-    name: 'Açai Antioxidant Bowl',
-    description: 'Whipped organic açai, house-made hemp seed granola, sliced bananas, local honeycomb, toasted coconut, and chia seeds.',
-    price: 18,
+    name: 'Vardhhan Specialty Puri Bhaji',
+    description: 'Golden-fried fluffy wheat flatbreads served with a classic semi-dry potato curry prepared with ginger, curry leaves, and green chilies, accompanied by home-made pickles.',
+    price: 170,
     category: 'breakfast',
-    tags: ['Vegan', 'Gluten-Free', 'Healthy'],
-    image: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&auto=format&fit=crop&q=80'
+    tags: ['Classic', 'Pure Vegetarian'],
+    image: 'https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=600&auto=format&fit=crop&q=80'
   },
-
-  // LUNCH & DINNER
+  
+  // LUNCH & DINNER (Authentic rich Indian Shakahari courses)
   {
     id: 'd1',
-    name: 'Saffron Infused Risotto Medallions',
-    description: 'Fragrant custom saffron risotto cakes over roasted baby asparagus, seasonal forest greens, and a citrus-herb Reduction.',
-    price: 42,
+    name: 'Shahi Khoya Paneer Tikka Masala',
+    description: 'Clay-oven roasted organic paneer skewers simmered in an indulgent tomato, cashew-nut, and fresh melon seed gravy, subtly perfumed with cardamoms.',
+    price: 360,
     category: 'lunch-dinner',
-    tags: ['Vegetarian', 'Gluten-Free', 'Signature'],
-    pairing: 'Pairs beautifully with our Reserve Chardonnay',
+    tags: ['Signature', 'Pure Vegetarian', 'Luxury'],
+    pairing: 'Pairs exquisitely with Butter Garlic Naan or Tandoori Roti',
     isChefSpecial: true,
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'd2',
-    name: 'Aged Balsamic Glazed Paneer Steak',
-    description: 'Thick organic block tandoori paneer steak, wild garlic herb emulsion, truffle potato purée, glazed heritage carrots, Cabernet balsamic reduction.',
-    price: 52,
+    name: 'North Karnataka Jolada Rotti & Ennegai',
+    description: 'Traditional wood-fired flatbreads of sorghum flour (jowar), served with charred tender baby eggplants stuffed with peanut-sesame spice blend.',
+    price: 320,
     category: 'lunch-dinner',
-    tags: ['Vegetarian', 'Gluten-Free'],
-    pairing: 'Sensational with the Napa Valley Cabernet',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop&q=80'
+    tags: ['Pure Vegetarian', 'Regional Favorite', 'Gluten-Free'],
+    pairing: 'Complements wonderfully with thick Gir cow milk curds',
+    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'd3',
-    name: 'Wild Mushroom Gnocchi',
-    description: 'House-crafted potato gnocchi, sautéed wild porcini and chanterelle mushrooms, white truffle cream, shaved Pecorino Romano, fresh chives.',
-    price: 34,
+    name: 'Royal Awadhi Jackfruit Dum Biryani',
+    description: 'Long-grain basmati saffron rice layered with tender chunks of seasoned jackfruit, fresh mint leaves, rose water, slow cooked in a sealed clay pot.',
+    price: 410,
     category: 'lunch-dinner',
-    tags: ['Vegetarian'],
-    pairing: 'Exceptional with our Pinot Noir Reserve',
-    isChefSpecial: false,
-    image: 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&auto=format&fit=crop&q=80'
+    tags: ['Pure Vegetarian', 'Chef Special'],
+    pairing: 'Best enjoyed with our organic pomegranate raita',
+    isChefSpecial: true,
+    image: 'https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'd4',
-    name: 'Ember-Roasted Cauliflower Steak',
-    description: 'Spiced thick-cut cauliflower, smoked red pepper coulis, toasted pine nuts, mint-cucumber labneh, herb salad.',
-    price: 29,
+    name: 'Vardhhan Dal Makhani Bukhara',
+    description: 'Whole black lentils, red kidney beans slow-cooked overnight over embers with fresh pureed tomatoes and hand-churned white butter, finished with cream.',
+    price: 280,
     category: 'lunch-dinner',
-    tags: ['Vegan', 'Gluten-Free', 'Healthy'],
-    pairing: 'Pairs nicely with our Provencal Rosé',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80'
+    tags: ['Pure Vegetarian', 'Classic Comfort'],
+    pairing: 'Pairs beautifully with our clay-oven lachha paratha',
+    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80'
   },
 
-  // DESSERTS
+  // DESSERTS (Rich Indian Shakahari sweets)
   {
     id: 'de1',
-    name: 'Decadent Dark Chocolate Soufflé',
-    description: '70% Valrhona dark chocolate warm soufflé, salted caramel core, served with house-made Madagascar vanilla bean gelato.',
-    price: 16,
+    name: 'Elaneer Payasam (Tender Coconut Kheer)',
+    description: 'Grated tender coconut pulp simmered in reduced organic whole milk, sweetened with organic palm jaggery, and infused with cardamom.',
+    price: 160,
     category: 'desserts',
-    tags: ['Vegetarian', 'Signature'],
+    tags: ['Signature', 'Pure Vegetarian'],
     isChefSpecial: true,
-    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 'de2',
-    name: 'Organic Lemon Verbena Tart',
-    description: 'Crispi sweet crust, zesty organic lemon verbena curd, delicate toasted meringue, raspberry coulis.',
-    price: 14,
-    category: 'desserts',
-    tags: ['Vegetarian'],
     image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&auto=format&fit=crop&q=80'
   },
   {
-    id: 'de3',
-    name: 'Affogato al Caffè',
-    description: 'A scoop of hand-churned hazelnut gelato drowned in a double shot of our signature artisanal espresso, dark chocolate shavings.',
-    price: 12,
+    id: 'de2',
+    name: 'Sada Shahi Kesar Badam Halwa',
+    description: 'Rich almond paste slow-stirred in golden Gir cow A2 ghee, generously studded with Kashmiri saffron strands, almond slivers, and premium green pistachios.',
+    price: 190,
     category: 'desserts',
-    tags: ['Vegetarian', 'Gluten-Free', 'Contains Nuts'],
+    tags: ['Pure Vegetarian', 'Luxury Sweet'],
+    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'de3',
+    name: 'Saffron Pistachio Kulfi with Rabdi',
+    description: 'Dense hand-churned frozen milk ice cream, flavored with saffron threads and crushed pistachios, garnished with a spiral of thickened sweet rabdi.',
+    price: 150,
+    category: 'desserts',
+    tags: ['Pure Vegetarian', 'Contains Nuts'],
     image: 'https://images.unsplash.com/photo-1594911774802-8822a707caff?w=600&auto=format&fit=crop&q=80'
   },
 
-  // DRINKS / WINE LIST
+  // DRINKS (Refreshing Shakahari non-alcoholic elixirs)
   {
     id: 'dr1',
-    name: 'Coastline Botanical Gin & Tonic',
-    description: 'Curated seaside gin, wild elderflower tonic, slapped fresh rosemary, dehydrated grapefruit wheel, served over hand-carved ice sphere.',
-    price: 18,
+    name: 'Saffron Cardamom Lassi Shahi',
+    description: 'Creamy hand-churned yogurt beverage sweetened with organic cane sugar, loaded with rich cream, saffron, and sweet cardamoms.',
+    price: 120,
     category: 'drinks',
-    tags: ['Cocktail', 'Signature'],
+    tags: ['Pure Vegetarian', 'Refreshing'],
     isChefSpecial: true,
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'dr2',
-    name: 'Vardhan Pinot Noir Reserve 2021',
-    description: 'Earthy undertone notes of wild black cherries, clove, and elegant French oak. Exceptional structural body with a velvety finish.',
-    price: 22,
+    name: 'Traditional South Indian Filter Coffee',
+    description: 'Hand-picked chicory blend custom roasted and slow-brewed in brass filters, aerated with frothy hot organic fresh farm milk served in traditional brass dabarah.',
+    price: 90,
     category: 'drinks',
-    tags: ['Wine', 'By The Glass', 'Red-Wine'],
+    tags: ['Pure Vegetarian', 'Hot Drink', 'Classic'],
     image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'dr3',
-    name: 'Reserve Chardonnay No. 12',
-    description: 'Bright tropical citrus, soft toasted brioche and vanilla oak notes. Rich, complex, and crisp coastal minerality.',
-    price: 20,
+    name: 'Royal Masala Chai Infusion',
+    description: 'Assam black tea leaves boiled with crushed green cardamom, fresh ginger, cinnamon logs, and cloves, combined with rich fresh whole milk.',
+    price: 80,
     category: 'drinks',
-    tags: ['Wine', 'By The Glass', 'White-Wine'],
+    tags: ['Pure Vegetarian', 'Hot Drink'],
     image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'dr4',
-    name: 'Hibiscus Blossom Elixir',
-    description: 'In-house brewed hibiscus tea, cold-pressed lime juice, sparkling mountain spring water, raw lavender honey essence.',
-    price: 12,
+    name: 'Royal Kokum & Bruised Mint Sherbet',
+    description: 'Tangy red kokum berry extract spiced with roasted cumin powder, black salt, organic sugar, and bruised fresh wild mint leaves over crystal ice.',
+    price: 110,
     category: 'drinks',
-    tags: ['Non-Alcoholic', 'Mocktail', 'Healthy'],
-    image: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?w=600&auto=format&fit=crop&q=80'
+    tags: ['Pure Vegetarian', 'Cold Drink', 'Vegan'],
+    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600&auto=format&fit=crop&q=80'
   },
 ];

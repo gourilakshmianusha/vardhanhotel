@@ -31,13 +31,453 @@ import {
   X,
   Sparkles,
   Heart,
-  BookOpen
+  BookOpen,
+  Calendar,
+  User,
+  Upload,
+  FileText,
+  ArrowLeft,
+  Lock,
+  LogOut
 } from 'lucide-react';
 import { HOTEL_MENU, MenuItem } from '@/lib/menuData';
+import { BlogPost, INITIAL_BLOGS } from '@/lib/blogData';
+
+function VardhhanLogo({ className = 'w-12 h-12' }: { className?: string }) {
+  return (
+    <svg 
+      viewBox="0 0 500 500" 
+      className={`${className} select-none`} 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Outer Green Ring */}
+      <circle cx="250" cy="250" r="235" stroke="#0B4224" strokeWidth="10" />
+      <circle cx="250" cy="250" r="230" stroke="#0B4224" strokeWidth="2" />
+      
+      {/* Inner Elegant Gold Ring */}
+      <circle cx="250" cy="250" r="220" stroke="#C5A880" strokeWidth="3" />
+      <circle cx="250" cy="250" r="215" stroke="#C5A880" strokeWidth="1" strokeDasharray="3 3" />
+      
+      {/* Chef Hat at the top inside the ring */}
+      <g id="chef-hat" transform="translate(0, -5)">
+        <path 
+          d="M205,95 C195,95 190,80 200,60 C210,40 230,35 250,45 C270,35 290,40 300,60 C310,80 305,95 295,95 Z" 
+          fill="#FAF9F5" 
+          stroke="#C5A880" 
+          strokeWidth="4" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+        />
+        <path d="M228,85 C228,65 235,55 240,50" stroke="#C5A880" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M250,90 C250,70 255,55 256,48" stroke="#C5A880" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M272,85 C272,65 265,55 260,50" stroke="#C5A880" strokeWidth="2.5" strokeLinecap="round" />
+        
+        <path 
+          d="M203,90 L297,90 L292,105 L208,105 Z" 
+          fill="#0B4224" 
+          stroke="#C5A880" 
+          strokeWidth="3.5" 
+          strokeLinejoin="round" 
+        />
+      </g>
+      
+      {/* Big Central 'V' */}
+      <g id="letter-v" transform="translate(0, 5)">
+        <path 
+          d="M140,115 L215,115 L260,305 L230,305 Z" 
+          fill="#0B4224" 
+        />
+        <path 
+          d="M192,115 L208,115 L252,295 L242,295 Z" 
+          fill="#C5A880" 
+        />
+        <path 
+          d="M360,115 L285,115 L230,305 L260,305 Z" 
+          fill="#0B4224" 
+        />
+        
+        <path 
+          d="M245,296 C270,250 310,210 370,170" 
+          stroke="#0B4224" 
+          strokeWidth="6" 
+          strokeLinecap="round" 
+        />
+        <path 
+          d="M290,260 C290,260 330,230 380,150 C380,150 365,200 320,240 Z" 
+          fill="#0B4224" 
+          stroke="#C5A880" 
+          strokeWidth="2.5"
+        />
+        <path d="M315,225 Q335,205 365,175" stroke="#FAF9F5" strokeWidth="2" strokeLinecap="round" />
+
+        <path 
+          d="M272,284 C272,284 315,280 375,230 C375,230 350,285 295,294 Z" 
+          fill="#0B4224" 
+          stroke="#C5A880" 
+          strokeWidth="2.5"
+        />
+        <path d="M295,280 Q325,270 355,250" stroke="#FAF9F5" strokeWidth="2" strokeLinecap="round" />
+      </g>
+      
+      <path 
+        d="M130,305 C200,312 300,312 370,305" 
+        stroke="#0B4224" 
+        strokeWidth="4" 
+        strokeLinecap="round" 
+      />
+
+      <text 
+        x="250" 
+        y="360" 
+        fill="#0B4224" 
+        fontFamily="serif" 
+        fontSize="52" 
+        fontWeight="800" 
+        letterSpacing="6" 
+        textAnchor="middle"
+      >
+        VARDHHAN
+      </text>
+      
+      <line x1="110" y1="388" x2="160" y2="388" stroke="#C5A880" strokeWidth="3" strokeLinecap="round" />
+      <text 
+        x="250" 
+        y="396" 
+        fill="#C5A880" 
+        fontFamily="serif" 
+        fontSize="24" 
+        fontWeight="bold" 
+        letterSpacing="8" 
+        textAnchor="middle"
+      >
+        HOTEL
+      </text>
+      <line x1="340" y1="388" x2="390" y2="388" stroke="#C5A880" strokeWidth="3" strokeLinecap="round" />
+
+      <g id="bottom-sprout" transform="translate(0, 10)">
+        <path d="M250,420 C245,410 248,395 250,392 C252,395 255,410 250,420 Z" fill="#0B4224" />
+        <path d="M250,420 C240,418 228,410 226,404 C232,403 243,412 250,420 Z" fill="#0B4224" />
+        <path d="M250,420 C260,418 272,410 274,404 C268,403 257,412 250,420 Z" fill="#0B4224" />
+        <circle cx="218" cy="415" r="3" fill="#0B4224" />
+        <circle cx="282" cy="415" r="3" fill="#0B4224" />
+      </g>
+      
+      <path 
+        d="M150,424 C190,442 310,442 350,424" 
+        fill="none" 
+        stroke="#0B4224" 
+        strokeWidth="32" 
+        strokeLinecap="round" />
+      <path 
+        id="path-vegetarian" 
+        d="M156,423 C192,440 308,440 344,423" 
+        fill="none" />
+      <text fill="#FAF9F5">
+        <textPath href="#path-vegetarian" startOffset="50%" textAnchor="middle" fontSize="18" fontWeight="bold" letterSpacing="4">
+          VEGETARIAN
+        </textPath>
+      </text>
+    </svg>
+  );
+}
+
+interface CarouselImage {
+  url: string;
+  title: string;
+  subtitle: string;
+}
+
+function PageCarousel({ images, heightClass = 'h-[250px] sm:h-[350px] md:h-[420px]' }: { images: CarouselImage[], heightClass?: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  if (!images || images.length === 0) return null;
+
+  return (
+    <div className={`relative w-full ${heightClass} rounded-lg overflow-hidden group border border-[#E7E2D8] bg-[#FAF9F5] shadow-sm`}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 1.01 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.99 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          className="absolute inset-0 w-full h-full"
+        >
+          {/* Main Image */}
+          <img 
+            src={images[currentIndex].url} 
+            alt={images[currentIndex].title}
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+          {/* Warm Dark Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
+          
+          {/* Captions Text with fade-up transition */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-left text-white max-w-3xl z-10 space-y-1.5 md:space-y-2">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.3 }}
+              className="inline-block text-[9px] md:text-xs font-semibold tracking-[0.25em] text-[#C5A880] uppercase"
+            >
+              Vardhhan Sanctuary Experience
+            </motion.span>
+            <motion.h4 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.3 }}
+              className="font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight"
+            >
+              {images[currentIndex].title}
+            </motion.h4>
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.3 }}
+              className="text-[11px] sm:text-xs md:text-sm text-[#FAF6EE]/80 max-w-xl font-light"
+            >
+              {images[currentIndex].subtitle}
+            </motion.p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Arrows */}
+      <button
+        type="button"
+        onClick={handlePrev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/30 hover:bg-[#FAF9F5]/90 hover:text-[#0B4224] text-white flex items-center justify-center backdrop-blur-sm transition-all shadow-md z-20 cursor-pointer border border-white/10 opacity-0 group-hover:opacity-100 focus:opacity-100"
+        aria-label="Previous Slide"
+      >
+        <span className="text-sm font-semibold">←</span>
+      </button>
+      <button
+        type="button"
+        onClick={handleNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/30 hover:bg-[#FAF9F5]/90 hover:text-[#0B4224] text-white flex items-center justify-center backdrop-blur-sm transition-all shadow-md z-20 cursor-pointer border border-white/10 opacity-0 group-hover:opacity-100 focus:opacity-100"
+        aria-label="Next Slide"
+      >
+        <span className="text-sm font-semibold">→</span>
+      </button>
+
+      {/* Progress Dots / Bars */}
+      <div className="absolute bottom-4 right-6 flex gap-1.5 z-20">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIndex(idx);
+            }}
+            className={`h-1.5 rounded-full cursor-pointer transition-all duration-300 ${
+              idx === currentIndex 
+                ? 'w-5 sm:w-7 bg-[#C5A880]' 
+                : 'w-1.5 bg-white/40 hover:bg-white/70'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState<'home' | 'about' | 'menu' | 'contact' | 'reviews' | 'admin'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'about' | 'menu' | 'blog' | 'contact' | 'reviews' | 'admin'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Blog states
+  const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
+  const [activeBlogCategory, setActiveBlogCategory] = useState<'All' | 'Gastronomy' | 'Wellness' | 'Heritage' | 'Behind the Scenes'>('All');
+  const [blogSearchQuery, setBlogSearchQuery] = useState('');
+  const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
+  const [selectedPolicy, setSelectedPolicy] = useState<'privacy' | 'terms' | 'cookies' | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  // Administrative Form & Action Error States
+  const [adminFormError, setAdminFormError] = useState('');
+  const [customConfirm, setCustomConfirm] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    confirmText?: string;
+    cancelText?: string;
+    isDangerous?: boolean;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: '',
+    message: '',
+    confirmText: 'Confirm',
+    cancelText: 'Cancel',
+    isDangerous: false,
+    onConfirm: () => {},
+  });
+
+  // Admin Login security states
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+
+  // Hydrate admin authentication on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const loggedIn = localStorage.getItem('vardhhan_admin_logged_in') === 'true';
+      if (loggedIn) {
+        setTimeout(() => {
+          setIsAdminLoggedIn(true);
+        }, 0);
+      }
+    }
+  }, []);
+
+  // Blog carousels
+  const blogCarouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=1600&auto=format&fit=crop&q=80",
+      title: "Traditional Indian Spice Chronicles",
+      subtitle: "A deep dive into how ancient mill-stone grinding preserves pure digestive oils and natural colors."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1600&auto=format&fit=crop&q=80",
+      title: "Nourishing Wellness of Shakahari",
+      subtitle: "Discover how plant-based diets, pure Gir cow ghee, and fresh organic herbs elevate body and mind."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=1600&auto=format&fit=crop&q=80",
+      title: "Signature Festive Banquets & Platters",
+      subtitle: "Behind the scenes of compiling our majestic royal Indian feast with curated subzis and naans."
+    }
+  ];
+
+  const homeCarouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1589301760014-d571583d3ce1?w=1600&auto=format&fit=crop&q=80",
+      title: "Royal Shakahari Dining Celebration",
+      subtitle: "Experience the ultimate collection of authentic vegetarian delicacies crafted with secret hand-ground spices."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=1600&auto=format&fit=crop&q=80",
+      title: "Rich Gourmet Paneer Specialties",
+      subtitle: "Our clay-oven cottage cheese melts in your mouth, bathed in luxurious tomato-cashew gravies and fresh coriander."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=1600&auto=format&fit=crop&q=80",
+      title: "Crispy Modern North & South Indian Starters",
+      subtitle: "From golden crisped samosas to airy hot vadas, dive into a sensory symphony of textures and vibrant mint chutneys."
+    }
+  ];
+
+  const aboutCarouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=1600&auto=format&fit=crop&q=80",
+      title: "Rooted in Authentic Traditional Spices",
+      subtitle: "Vardhhan Hotel bridges pure ingredients and deep-rooted hospitality with premium comfortable modern dining."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1600&auto=format&fit=crop&q=80",
+      title: "Primal Organic Garden-to-Plate Standards",
+      subtitle: "We prioritize raw organic harvests, clean air, green foliage, and natural environments promoting wellness."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=1600&auto=format&fit=crop&q=80",
+      title: "Sophisticated Handcrafted Plating Artistry",
+      subtitle: "Every dish is curated on sleek dinnerware under beautiful warm lighting to soothe the senses."
+    }
+  ];
+
+  const menuCarouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=1600&auto=format&fit=crop&q=80",
+      title: "Royal South Indian Crispy Masala Dosa",
+      subtitle: "Savor our legendary thin golden crêpe, generously filled with spiced potato masala and served with traditional sambar and coconut dips."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1600&auto=format&fit=crop&q=80",
+      title: "Sizzling Gourmet Clay-Oven Paneer Tikka",
+      subtitle: "Gently charred premium cottage cheese marinated in stone-ground mustard oil, rich hung herd yogurt, and a blend of hand-pounded spices."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=1600&auto=format&fit=crop&q=80",
+      title: "Slow-Cooked Royal Vegetable Dum Biryani",
+      subtitle: "Layers of highly fragrant long-grain basmati rice, pristine saffron milk, caramelized shallots, and fresh garden vegetables."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=1600&auto=format&fit=crop&q=80",
+      title: "Vardhhan Signature Shakahari Thali Platter",
+      subtitle: "A majestic feast honoring royal Indian traditions: includes fresh house-made subzis, dynamic dal fry, butter naan, and sweet gulab jamuns."
+    }
+  ];
+
+  const reviewsCarouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&auto=format&fit=crop&q=80",
+      title: "Warm Well-being & Heartfelt Welcomes",
+      subtitle: "Guests enjoy pristine tables nested in a refined, beautifully-lit dining sanctuary."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=1600&auto=format&fit=crop&q=80",
+      title: "Refreshing Cold Press & Herbal Infusions",
+      subtitle: "Relish healthy handcrafted fruit elixirs and cardamom smoothies under elegant glass arches."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=1600&auto=format&fit=crop&q=80",
+      title: "Stellar Traditional Indian Desserts",
+      subtitle: "Satisfy your palate with signature sweets and premium saffron kheer plated perfectly for our guests."
+    }
+  ];
+
+  const contactCarouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600&auto=format&fit=crop&q=80",
+      title: "Vardhhan Grand Banquets & Hall Space",
+      subtitle: "Plan intimate family gatherings, corporate receptions, or private traditional celebrations with gourmet vegetarian catering."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1600&auto=format&fit=crop&q=80",
+      title: "Primate Booking Receptions on Gokul Road",
+      subtitle: "Enjoy premium booth reservation, quiet privacy partitions, and personal call-service direct from our desk."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&auto=format&fit=crop&q=80",
+      title: "Aromatic Fireplace Atrium Gatherings",
+      subtitle: "Coordinate transport services and custom seating layouts directly through our 24h concierge."
+    }
+  ];
+
+  const adminCarouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=1600&auto=format&fit=crop&q=80",
+      title: "Pristine Culinary Ingredients Control",
+      subtitle: "Oversee fresh whole spices, local farm herbs, organic seasonings, and update active recipe definitions."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1600&auto=format&fit=crop&q=80",
+      title: "Chef Command and Menu Registration",
+      subtitle: "Quickly manage pricing structures, adjust dietitian tags, add kitchen specials, or clear client logs."
+    }
+  ];
 
   // Load custom menu items from local storage if available
   const [menuItems, setMenuItems] = useState<MenuItem[]>(HOTEL_MENU);
@@ -75,6 +515,177 @@ export default function HomePage() {
     }
   };
 
+  // Load custom blogs if available
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedBlogs = localStorage.getItem('vardhhan_blog_posts');
+      if (savedBlogs) {
+        try {
+          const parsed = JSON.parse(savedBlogs);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setTimeout(() => {
+              setBlogs(parsed);
+            }, 0);
+          }
+        } catch (e) {
+          console.error("Failed to parse blog posts from storage", e);
+        }
+      }
+    }
+  }, []);
+
+  const saveBlogsState = (newBlogs: BlogPost[]) => {
+    setBlogs(newBlogs);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('vardhhan_blog_posts', JSON.stringify(newBlogs));
+    }
+  };
+
+  // Admin Blog CRUD states
+  const [editingBlogId, setEditingBlogId] = useState<string | null>(null);
+  const [blogForm, setBlogForm] = useState({
+    title: '',
+    excerpt: '',
+    content: '',
+    category: 'Gastronomy' as 'Gastronomy' | 'Wellness' | 'Heritage' | 'Behind the Scenes',
+    image: '',
+    author: 'Chef Vardhhan'
+  });
+  const [blogAdminSearch, setBlogAdminSearch] = useState('');
+  const [blogImageUploadError, setBlogImageUploadError] = useState('');
+  const [blogSuccessMessage, setBlogSuccessMessage] = useState('');
+  const [activeAdminSubTab, setActiveAdminSubTab] = useState<'menu' | 'blog'>('menu');
+
+  const startEditBlogPost = (post: BlogPost) => {
+    setEditingBlogId(post.id);
+    setBlogForm({
+      title: post.title,
+      excerpt: post.excerpt,
+      content: post.content,
+      category: post.category,
+      image: post.image,
+      author: post.author
+    });
+    setBlogImageUploadError('');
+  };
+
+  const cancelEditBlogPost = () => {
+    setEditingBlogId(null);
+    setBlogForm({
+      title: '',
+      excerpt: '',
+      content: '',
+      category: 'Gastronomy',
+      image: '',
+      author: 'Chef Vardhhan'
+    });
+    setBlogImageUploadError('');
+  };
+
+  const handleCreateOrUpdateBlogPost = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!blogForm.title.trim()) return;
+
+    if (editingBlogId) {
+      const updatedBlogs = blogs.map(item => {
+        if (item.id === editingBlogId) {
+          return {
+            ...item,
+            title: blogForm.title.trim(),
+            excerpt: blogForm.excerpt.trim(),
+            content: blogForm.content.trim(),
+            category: blogForm.category,
+            image: blogForm.image.trim() || 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=1200',
+            author: blogForm.author.trim() || 'Chef Vardhhan'
+          };
+        }
+        return item;
+      });
+      saveBlogsState(updatedBlogs);
+      setBlogSuccessMessage('Blog chronicle updated successfully.');
+      cancelEditBlogPost();
+    } else {
+      const newPost: BlogPost = {
+        id: 'post-' + Date.now(),
+        title: blogForm.title.trim(),
+        excerpt: blogForm.excerpt.trim(),
+        content: blogForm.content.trim(),
+        category: blogForm.category,
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+        readTime: Math.max(1, Math.ceil(blogForm.content.trim().split(/\s+/).length / 200)) + ' min read',
+        image: blogForm.image.trim() || 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=1200',
+        author: blogForm.author.trim() || 'Chef Vardhhan'
+      };
+      saveBlogsState([newPost, ...blogs]);
+      setBlogSuccessMessage('Blog chronicle posted successfully.');
+      cancelEditBlogPost();
+    }
+    setTimeout(() => setBlogSuccessMessage(''), 4000);
+  };
+
+  const handleDeleteBlogPost = (id: string) => {
+    setCustomConfirm({
+      isOpen: true,
+      title: 'Remove Chronicle Entry',
+      message: 'Are you sure you want to permanently remove this blog post? This action cannot be reversed.',
+      confirmText: 'Remove Entry',
+      cancelText: 'Keep Entry',
+      isDangerous: true,
+      onConfirm: () => {
+        const updatedBlogs = blogs.filter(item => item.id !== id);
+        saveBlogsState(updatedBlogs);
+        setBlogSuccessMessage('Blog chronicle removed successfully.');
+        if (editingBlogId === id) {
+          cancelEditBlogPost();
+        }
+        setTimeout(() => setBlogSuccessMessage(''), 4000);
+        setCustomConfirm(prev => ({ ...prev, isOpen: false }));
+      }
+    });
+  };
+
+  const handleResetToDefaultBlogs = () => {
+    setCustomConfirm({
+      isOpen: true,
+      title: 'Restore Default Chronicles',
+      message: 'Are you sure you want to restore all heirloom blog chronicles to defaults? This will overwrite your current custom posts.',
+      confirmText: 'Restore Defaults',
+      cancelText: 'Cancel',
+      isDangerous: true,
+      onConfirm: () => {
+        saveBlogsState(INITIAL_BLOGS);
+        setBlogSuccessMessage('Blog chronicles successfully restored to defaults.');
+        cancelEditBlogPost();
+        setTimeout(() => setBlogSuccessMessage(''), 4000);
+        setCustomConfirm(prev => ({ ...prev, isOpen: false }));
+      }
+    });
+  };
+
+  const handleAdminLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginUsername.trim().toLowerCase() === 'admin' && loginPassword === 'admin') {
+      setIsAdminLoggedIn(true);
+      setLoginError('');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('vardhhan_admin_logged_in', 'true');
+      }
+      setAdminSuccessMessage('Welcome back, Chief Steward. Authorized console loaded.');
+      setLoginUsername('');
+      setLoginPassword('');
+      setTimeout(() => setAdminSuccessMessage(''), 4000);
+    } else {
+      setLoginError('Invalid administrative credentials. Access denied.');
+    }
+  };
+
+  const handleAdminLogout = () => {
+    setIsAdminLoggedIn(false);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('vardhhan_admin_logged_in');
+    }
+  };
+
   // Admin CRUD states
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [adminForm, setAdminForm] = useState({
@@ -103,7 +714,7 @@ export default function HomePage() {
       name: 'Marcus Brody',
       rating: 5,
       date: 'April 28, 2026',
-      content: 'If you want to truly disconnect and find sanctuary, Vardhan Hotel is the place. The aesthetic is clean and minimal, the staff are attentive yet completely unobtrusive. Will return every spring.',
+      content: 'If you want to truly disconnect and find sanctuary, Vardhhan Hotel is the place. The aesthetic is clean and minimal, the staff are attentive yet completely unobtrusive. Will return every spring.',
     },
     {
       id: 3,
@@ -191,9 +802,10 @@ export default function HomePage() {
   const handleAdminFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!adminForm.name || !adminForm.description || !adminForm.price) {
-      alert("Please provide valid name, description, and price.");
+      setAdminFormError("Please provide a valid dish title, description, and price.");
       return;
     }
+    setAdminFormError('');
 
     const tagsArray = adminForm.tagsString
       .split(',')
@@ -259,6 +871,7 @@ export default function HomePage() {
   };
 
   const startEditMenuItem = (item: MenuItem) => {
+    setAdminFormError('');
     setEditingItemId(item.id);
     setAdminForm({
       name: item.name,
@@ -274,6 +887,7 @@ export default function HomePage() {
 
   const cancelEditMenuItem = () => {
     setEditingItemId(null);
+    setAdminFormError('');
     setAdminForm({
       name: '',
       description: '',
@@ -287,24 +901,42 @@ export default function HomePage() {
   };
 
   const deleteMenuItem = (id: string, name: string) => {
-    if (confirm(`Are you sure you want to remove "${name}" from the bistro menu?`)) {
-      const remaining = menuItems.filter(item => item.id !== id);
-      saveMenuState(remaining);
-      setAdminSuccessMessage(`"${name}" has been removed.`);
-      if (editingItemId === id) {
-        cancelEditMenuItem();
+    setCustomConfirm({
+      isOpen: true,
+      title: 'Remove Menu Dish',
+      message: `Are you sure you want to permanently remove "${name}" from the live bistro menu?`,
+      confirmText: 'Remove Dish',
+      cancelText: 'Keep Dish',
+      isDangerous: true,
+      onConfirm: () => {
+        const remaining = menuItems.filter(item => item.id !== id);
+        saveMenuState(remaining);
+        setAdminSuccessMessage(`"${name}" has been removed.`);
+        if (editingItemId === id) {
+          cancelEditMenuItem();
+        }
+        setTimeout(() => setAdminSuccessMessage(''), 4000);
+        setCustomConfirm(prev => ({ ...prev, isOpen: false }));
       }
-      setTimeout(() => setAdminSuccessMessage(''), 4000);
-    }
+    });
   };
 
   const handleResetToDefaultMenu = () => {
-    if (confirm("Are you sure you want to restore the bistro menu to its original heirloom items list? This will overwrite your custom changes.")) {
-      saveMenuState(HOTEL_MENU);
-      setAdminSuccessMessage('Bistro menu successfully restored to defaults.');
-      cancelEditMenuItem();
-      setTimeout(() => setAdminSuccessMessage(''), 4000);
-    }
+    setCustomConfirm({
+      isOpen: true,
+      title: 'Restore Default Bistro Menu',
+      message: 'Are you sure you want to restore the bistro menu to its original heirloom items list? This will overwrite your current custom changes.',
+      confirmText: 'Restore Defaults',
+      cancelText: 'Cancel',
+      isDangerous: true,
+      onConfirm: () => {
+        saveMenuState(HOTEL_MENU);
+        setAdminSuccessMessage('Bistro menu successfully restored to defaults.');
+        cancelEditMenuItem();
+        setTimeout(() => setAdminSuccessMessage(''), 4000);
+        setCustomConfirm(prev => ({ ...prev, isOpen: false }));
+      }
+    });
   };
 
   return (
@@ -317,14 +949,12 @@ export default function HomePage() {
           <div 
             id="brand-logo" 
             onClick={() => setActiveTab('home')} 
-            className="group cursor-pointer flex items-center gap-2.5 transition-transform"
+            className="group cursor-pointer flex items-center gap-3 transition-transform"
           >
-            <div className="w-8 h-8 rounded-full bg-[#1C1917] flex items-center justify-center text-[#FAF9F5] font-serif transition-colors duration-300 group-hover:bg-[#C5A880]">
-              H
-            </div>
+            <VardhhanLogo className="w-12 h-12 group-hover:scale-105 transition-transform duration-300" />
             <div>
-              <h1 className="font-serif text-sm sm:text-base md:text-xl font-extrabold tracking-wide text-[#1C1917] group-hover:text-[#C5A880] transition-colors">
-                Vardhan Hotel
+              <h1 className="font-serif text-sm sm:text-base md:text-xl font-extrabold tracking-wide text-[#0B4224] group-hover:text-[#C5A880] transition-colors">
+                Vardhhan Hotel
               </h1>
               <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-[#8C8375] font-sans">
                 Pure Vegetarian & Suites
@@ -341,13 +971,29 @@ export default function HomePage() {
                   setActiveTab(tab);
                   if (tab === 'contact') setIsSubmitted(false);
                 }}
-                className={`px-3 py-2 text-xs uppercase tracking-widest font-semibold rounded-sm transition-all duration-200 cursor-pointer ${
+                className={`relative px-4 py-2.5 text-xs uppercase tracking-widest font-semibold rounded-sm transition-colors duration-300 cursor-pointer ${
                   activeTab === tab 
-                    ? 'bg-[#1C1917] text-[#FAF9F5]' 
-                    : 'text-[#60564C] hover:text-[#1C1917] hover:bg-[#EAE5D9]/40'
+                    ? 'text-[#FAF9F5]' 
+                    : 'text-[#60564C] hover:text-[#0B4224]'
                 }`}
               >
-                {tab === 'about' ? 'About Us' : tab === 'contact' ? 'Contact Us' : tab === 'admin' ? 'Admin Panel' : tab}
+                <span className="relative z-10">
+                  {tab === 'about' ? 'About Us' : tab === 'contact' ? 'Contact Us' : tab === 'admin' ? 'Admin Panel' : tab}
+                </span>
+                {activeTab === tab && (
+                  <motion.span 
+                    layoutId="header-active-pill"
+                    className="absolute inset-0 bg-[#0B4224] rounded-sm"
+                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                  />
+                )}
+                {activeTab === tab && (
+                  <motion.span 
+                    layoutId="header-active-line"
+                    className="absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#C5A880]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                  />
+                )}
               </button>
             ))}
           </nav>
@@ -356,7 +1002,7 @@ export default function HomePage() {
             id="mobile-menu-toggle"
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex md:hidden p-2 text-[#60564C] hover:text-[#1C1917] hover:bg-[#EAE5D9]/40 rounded-sm transition-all focus:outline-none"
+            className="flex md:hidden p-2 text-[#60564C] hover:text-[#0B4224] hover:bg-[#EAE5D9]/40 rounded-sm transition-all focus:outline-none"
             aria-label="Toggle Navigation Menu"
           >
             {isMobileMenuOpen ? (
@@ -388,8 +1034,8 @@ export default function HomePage() {
                   }}
                   className={`w-full text-left px-4 py-3 text-xs uppercase tracking-widest font-bold rounded-sm transition-all duration-150 ${
                     activeTab === tab 
-                      ? 'bg-[#1C1917] text-[#FAF9F5]' 
-                      : 'text-[#60564C] hover:text-[#1C1917] hover:bg-[#EAE5D9]/40'
+                      ? 'bg-[#0B4224] text-[#FAF9F5]' 
+                      : 'text-[#60564C] hover:text-[#0B4224] hover:bg-[#EAE5D9]/40'
                   }`}
                 >
                   {tab === 'about' ? 'About Us' : tab === 'contact' ? 'Contact Us' : tab === 'admin' ? 'Admin Panel' : tab}
@@ -415,6 +1061,9 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="space-y-16"
             >
+              {/* BRAND IMAGE CAROUSEL */}
+              <PageCarousel images={homeCarouselImages} />
+
               {/* HERO SECTION */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div className="lg:col-span-5 space-y-6">
@@ -422,12 +1071,12 @@ export default function HomePage() {
                     <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#C5A880]">
                       Gokul Road, Hubballi
                     </span>
-                    <h2 className="font-serif text-4xl sm:text-5xl font-bold leading-tight text-[#1C1917]">
+                    <h2 className="font-serif text-4xl sm:text-5xl font-bold leading-tight text-[#0B4224]">
                       A Serene Escape of Pure Comfort
                     </h2>
                   </div>
                   <p className="text-sm text-[#60564C] leading-relaxed">
-                    Perched gently in the vibrant heart of Hubballi, Vardhan Hotel blends timeless elegance with pristine local hospitality. Recharge in our luxury suites, savor hand-crafted, exclusively 100% vegetarian culinary masterpieces at our dining hall, and find complete peace.
+                    Perched gently in the vibrant heart of Hubballi, Vardhhan Hotel blends timeless elegance with pristine local hospitality. Recharge in our luxury suites, savor hand-crafted, exclusively 100% vegetarian culinary masterpieces at our dining hall, and find complete peace.
                   </p>
                   <div className="flex flex-wrap gap-4 pt-2">
                     <button
@@ -436,7 +1085,7 @@ export default function HomePage() {
                         setActiveTab('menu');
                         setMenuSubTab('all');
                       }}
-                      className="bg-[#1C1917] text-[#FAF9F5] hover:bg-[#C5A880] text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors cursor-pointer flex items-center gap-2 group"
+                      className="bg-[#0B4224] text-[#FAF9F5] hover:bg-[#C5A880] text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors cursor-pointer flex items-center gap-2 group"
                     >
                       Explore Our Menu
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -444,7 +1093,7 @@ export default function HomePage() {
                     <button
                       id="hero-to-contact-btn"
                       onClick={() => setActiveTab('contact')}
-                      className="border border-[#E7E2D8] text-[#1C1917] hover:bg-[#FAF6EE] text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors cursor-pointer"
+                      className="border border-[#E7E2D8] text-[#0B4224] hover:bg-[#FAF6EE] text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors cursor-pointer"
                     >
                       Plan Your Visit
                     </button>
@@ -461,13 +1110,13 @@ export default function HomePage() {
                     {/* Scenic clifftop bistro dining layout */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 pointer-events-none" />
                     <img 
-                      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&auto=format&fit=crop&q=80" 
-                      alt="Elegant bistro dining space at Vardhan Hotel" 
+                      src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&auto=format&fit=crop&q=80" 
+                      alt="Elegant bistro dining space at Vardhhan Hotel" 
                       className="object-cover w-full h-full transition-transform duration-700 scale-100 group-hover:scale-[1.03]"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute bottom-5 left-5 z-20 text-white space-y-1 text-left">
-                      <p className="font-serif text-lg font-bold">Vardhan Shakahari Kitchen</p>
+                      <p className="font-serif text-lg font-bold">Vardhhan Shakahari Kitchen</p>
                       <p className="text-[10px] uppercase tracking-widest text-[#FAF6EE]/90">Exquisite Vegetarian Cuisine</p>
                     </div>
                   </motion.div>
@@ -475,9 +1124,27 @@ export default function HomePage() {
               </div>
 
               {/* THREE CORE SANCTUARIES */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0 },
+                  show: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.12
+                    }
+                  }
+                }}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-40px" }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6"
+              >
                 
                 <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, y: 35 },
+                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+                  }}
                   whileHover={{ y: -6, scale: 1.02, borderColor: '#C5A880', boxShadow: '0 12px 30px rgba(197, 168, 128, 0.12)' }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setSelectedSanctuary('lodging')}
@@ -496,6 +1163,10 @@ export default function HomePage() {
                 </motion.div>
 
                 <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, y: 35 },
+                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+                  }}
                   whileHover={{ y: -6, scale: 1.02, borderColor: '#C5A880', boxShadow: '0 12px 30px rgba(197, 168, 128, 0.12)' }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setSelectedSanctuary('bistro')}
@@ -514,6 +1185,10 @@ export default function HomePage() {
                 </motion.div>
 
                 <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, y: 35 },
+                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+                  }}
                   whileHover={{ y: -6, scale: 1.02, borderColor: '#C5A880', boxShadow: '0 12px 30px rgba(197, 168, 128, 0.12)' }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setSelectedSanctuary('reserves')}
@@ -531,7 +1206,7 @@ export default function HomePage() {
                   </div>
                 </motion.div>
 
-              </div>
+              </motion.div>
 
               {/* SIMPLE HIGHLIGHTS BANNER */}
               <div className="bg-white rounded-lg border border-[#E7E2D8] p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -578,12 +1253,15 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="space-y-12 max-w-4xl mx-auto"
             >
+              {/* ABOUT INFORMATION CAROUSEL */}
+              <PageCarousel images={aboutCarouselImages} />
+
               <div className="text-center space-y-3">
                 <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#C5A880]">
                   Heritage & Philosophy
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1C1917]">
-                  The Story of Vardhan Hotel
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0B4224]">
+                  The Story of Vardhhan Hotel
                 </h2>
                 <div className="w-12 h-px bg-[#C5A880] mx-auto mt-4" />
               </div>
@@ -591,11 +1269,11 @@ export default function HomePage() {
               {/* PHILOSOPHY GRID */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-4 items-center">
                 <div className="space-y-6">
-                  <h3 className="font-serif text-2xl font-bold text-[#1C1917]">
+                  <h3 className="font-serif text-2xl font-bold text-[#0B4224]">
                     Starting in 2021 on Gokul Road
                   </h3>
                   <p className="text-xs text-[#60564C] leading-relaxed text-left">
-                    Established in 2021 in the vibrant hub of Hubballi, Vardhan Hotel was built on the foundation of elegant, respectful hospitality. We carry a deep commitment to wellness, which is why <strong>only 100% vegetarian food is available</strong> in our exquisite kitchens, featuring seasonal organic ingredients gathered from premium local valleys.
+                    Established in 2021 in the vibrant hub of Hubballi, Vardhhan Hotel was built on the foundation of elegant, respectful hospitality. We carry a deep commitment to wellness, which is why <strong>only 100% vegetarian food is available</strong> in our exquisite kitchens, featuring seasonal organic ingredients gathered from premium local valleys.
                   </p>
                   <p className="text-xs text-[#60564C] leading-relaxed text-left">
                     Our design aesthetic borrows elements of traditional warmth and infuses them with clean, modern lines, elegant wooden finishes, and warm comfortable furnishings. We believe in visual quietness: allowing of spectacular culinary artistry and our genuine, heartfelt hospitality to form the centerpiece of your memories.
@@ -609,7 +1287,7 @@ export default function HomePage() {
                   className="relative aspect-square w-full rounded-md overflow-hidden shadow-sm group border border-[#E7E2D8]"
                 >
                   <img 
-                    src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&auto=format&fit=crop&q=80" 
+                    src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=800&auto=format&fit=crop&q=80" 
                     alt="Bistro Culinary Artisan Plating" 
                     className="object-cover w-full h-full transition-transform duration-700 scale-100 group-hover:scale-105"
                     referrerPolicy="no-referrer"
@@ -625,8 +1303,24 @@ export default function HomePage() {
               {/* TIMELINE VALUES */}
               <div className="bg-white p-6 md:p-8 rounded-lg border border-[#E7E2D8] space-y-6">
                 <h4 className="font-serif text-xl font-bold text-center text-[#1C1917]">Our Core Principles</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0 },
+                    show: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.1 }
+                    }
+                  }}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: "-20px" }}
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+                >
                   <motion.div 
+                    variants={{
+                      hidden: { opacity: 0, y: 25 },
+                      show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                    }}
                     whileHover={{ scale: 1.03, y: -4, borderColor: '#C5A880', boxShadow: '0 8px 24px rgba(197, 168, 128, 0.08)' }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setSelectedPrinciple('stewardship')}
@@ -640,6 +1334,10 @@ export default function HomePage() {
                   </motion.div>
 
                   <motion.div 
+                    variants={{
+                      hidden: { opacity: 0, y: 25 },
+                      show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                    }}
                     whileHover={{ scale: 1.03, y: -4, borderColor: '#C5A880', boxShadow: '0 8px 24px rgba(197, 168, 128, 0.08)' }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setSelectedPrinciple('authenticity')}
@@ -653,6 +1351,10 @@ export default function HomePage() {
                   </motion.div>
 
                   <motion.div 
+                    variants={{
+                      hidden: { opacity: 0, y: 25 },
+                      show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                    }}
                     whileHover={{ scale: 1.03, y: -4, borderColor: '#C5A880', boxShadow: '0 8px 24px rgba(197, 168, 128, 0.08)' }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setSelectedPrinciple('stillness')}
@@ -664,13 +1366,13 @@ export default function HomePage() {
                     </p>
                     <span className="text-[10px] text-[#C5A880] font-sans block mt-1">Read Philosophy &bull;</span>
                   </motion.div>
-                </div>
+                </motion.div>
               </div>
 
               {/* HEAR FROM CONCIERGE */}
               <div className="bg-[#FAF6EE] p-8 rounded-md text-center border border-[#EAE5D9]">
-                <p className="italic font-serif text-[#1C1917] text-md max-w-2xl mx-auto leading-relaxed">
-                  &ldquo;At Vardhan Hotel, we do not measure luxury in digital gadgets, but in rare elements: the aroma of fresh organic morning herbs, the absolute dining purity of our 100% vegetarian kitchens, and the genuine smile of a host who anticipates your need before you ask.&rdquo;
+                <p className="italic font-serif text-[#0B4224] text-md max-w-2xl mx-auto leading-relaxed">
+                  &ldquo;At Vardhhan Hotel, we do not measure luxury in digital gadgets, but in rare elements: the aroma of fresh organic morning herbs, the absolute dining purity of our 100% vegetarian kitchens, and the genuine smile of a host who anticipates your need before you ask.&rdquo;
                 </p>
                 <span className="text-[10px] tracking-widest uppercase font-extrabold text-[#8C8375] mt-4 block">
                   — Rajesh Patil, Director of Hospitality
@@ -691,12 +1393,15 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="space-y-8"
             >
+              {/* CULINARY IMAGE CAROUSEL */}
+              <PageCarousel images={menuCarouselImages} />
+
               {/* Header Info */}
               <div className="text-center space-y-2">
                 <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#C5A880]">
                   Pure Vegetarian Shakahari Dining
                 </span>
-                <h2 className="font-serif text-3xl font-bold text-[#1C1917]">Vardhan Shakahari Menu</h2>
+                <h2 className="font-serif text-3xl font-bold text-[#0B4224]">Vardhhan Shakahari Menu</h2>
                 <p className="text-xs text-[#60564C] max-w-md mx-auto leading-relaxed">
                   Browse our handpicked farm-to-table selections. Filter by meal category or explore chef specialties.
                 </p>
@@ -711,7 +1416,7 @@ export default function HomePage() {
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/20 z-10 pointer-events-none" />
                 <img 
-                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&auto=format&fit=crop&q=80" 
+                  src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=1600&auto=format&fit=crop&q=80" 
                   alt="Curated Shakahari Gastronomy" 
                   className="object-cover w-full h-full transition-transform duration-10000 ease-out scale-100 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -721,7 +1426,7 @@ export default function HomePage() {
                     Sattvic Shakahari Artistry
                   </span>
                   <h3 className="font-serif text-2xl md:text-3xl font-extrabold text-[#FAF9F5] leading-tight max-w-lg">
-                    Vardhan Culinary Registry
+                    Vardhhan Culinary Registry
                   </h3>
                   <p className="text-xs text-[#FAF6EE]/80 leading-relaxed max-w-xl font-light text-left">
                     Where every table is nestled in a refined luxury ambiance, and every recipe is crafted with deep reverence for Hubballi&apos;s rich organic harvest. Pair your choice with elegant fresh beverages and reserve juices.
@@ -756,13 +1461,20 @@ export default function HomePage() {
                     <button
                       key={subTab.id}
                       onClick={() => setMenuSubTab(subTab.id)}
-                      className={`px-3 py-1.5 text-xs font-semibold rounded-sm tracking-wide transition-all ${
+                      className={`relative px-4 py-2 text-xs font-semibold rounded-sm tracking-wide transition-colors duration-300 cursor-pointer border border-[#E7E2D8] ${
                         menuSubTab === subTab.id 
-                          ? 'bg-[#1C1917] text-[#FAF9F5]' 
-                          : 'bg-[#FAF9F5] text-[#60564C] border border-[#E7E2D8] hover:bg-[#FAF6EE]'
+                          ? 'text-[#FAF9F5] border-transparent' 
+                          : 'bg-[#FAF9F5] text-[#60564C] hover:bg-[#FAF6EE] hover:text-[#0B4224]'
                       }`}
                     >
-                      {subTab.label}
+                      <span className="relative z-10">{subTab.label}</span>
+                      {menuSubTab === subTab.id && (
+                        <motion.span 
+                          layoutId="menu-sub-active-pill"
+                          className="absolute inset-0 bg-[#0B4224] rounded-sm"
+                          transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                        />
+                      )}
                     </button>
                   ))}
                 </div>
@@ -887,6 +1599,9 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="space-y-12"
             >
+              {/* CONTACT & RESERVATION CAROUSEL */}
+              <PageCarousel images={contactCarouselImages} />
+
               <div className="text-center space-y-2 max-w-xl mx-auto">
                 <span className="text-[#C5A880] text-xs uppercase tracking-[0.2em] font-bold block">
                   Concierge Desk
@@ -908,7 +1623,7 @@ export default function HomePage() {
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/20 z-10 pointer-events-none" />
                 <img 
-                  src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1600&auto=format&fit=crop&q=80" 
+                  src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&auto=format&fit=crop&q=80" 
                   alt="Reserve Dining Tables" 
                   className="object-cover w-full h-full transition-transform duration-10000 ease-out scale-100 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -954,7 +1669,7 @@ export default function HomePage() {
                         <Mail className="w-4 h-4 text-[#C5A880] shrink-0 mt-0.5" />
                         <div>
                           <strong className="block text-[#1C1917]">Electronic Inquiry</strong>
-                          contact@vardhanhotel.com
+                          contact@vardhhanhotel.com
                         </div>
                       </li>
                       <li className="flex items-start gap-4">
@@ -1059,8 +1774,8 @@ export default function HomePage() {
                     <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C5A880]">
                       Arrival & Regional Guide
                     </span>
-                    <h3 className="font-serif text-2xl font-bold text-[#1C1917] mt-1">
-                      Vardhan Map Companion
+                    <h3 className="font-serif text-2xl font-bold text-[#0B4224] mt-1">
+                      Vardhhan Map Companion
                     </h3>
                   </div>
                   
@@ -1073,8 +1788,8 @@ export default function HomePage() {
                         onClick={() => setActiveLocationTab(tab)}
                         className={`px-3 py-1.5 text-xs font-semibold rounded-sm uppercase tracking-wider transition-all cursor-pointer ${
                           activeLocationTab === tab
-                            ? 'bg-[#1C1917] text-[#FAF9F5]'
-                            : 'text-[#60564C] hover:text-[#1C1917] hover:bg-[#EAE5D9]/40'
+                            ? 'bg-[#0B4224] text-[#FAF9F5]'
+                            : 'text-[#60564C] hover:text-[#0B4224] hover:bg-[#EAE5D9]/40'
                         }`}
                       >
                         {tab === 'map' ? 'Interactive Map' : tab === 'landmarks' ? 'Landmarks' : 'Directions'}
@@ -1095,13 +1810,13 @@ export default function HomePage() {
                       className="space-y-4"
                     >
                       <p className="text-xs text-[#60564C] leading-relaxed max-w-2xl font-light">
-                        Nestled at Shop No 1, Pride Icon on Gokul Road, Hubballi, Vardhan Hotel provides sophisticated, boutique accommodations and exceptional vegetarian culinary environments. Use the map below to orient yourself or plan your journey.
+                        Nestled at Shop No 1, Pride Icon on Gokul Road, Hubballi, Vardhhan Hotel provides sophisticated, boutique accommodations and exceptional vegetarian culinary environments. Use the map below to orient yourself or plan your journey.
                       </p>
                       
                       {/* Styled Map frame */}
                       <div className="relative w-full h-[400px] rounded-lg overflow-hidden border border-[#E7E2D8] bg-[#FAF9F5] shadow-xs">
                         <iframe
-                          title="Vardhan Hotel Location Map"
+                          title="Vardhhan Hotel Location Map"
                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15383.0336683884!2d75.101569!3d15.361545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb5f2b87ff484c9%3A0xc367d307185dede1!2sGokul%20Rd%2C%20Hubballi%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1717208400000!5m2!1sen!2sin"
                           width="100%"
                           height="100%"
@@ -1144,7 +1859,7 @@ export default function HomePage() {
                             onClick={() => setSelectedLandmark(land.id)}
                             className={`w-full text-left p-3.5 rounded transition-all flex items-center justify-between border cursor-pointer ${
                               selectedLandmark === land.id
-                                ? 'bg-[#1C1917] text-[#FAF9F5] border-[#1C1917]'
+                                ? 'bg-[#0B4224] text-[#FAF9F5] border-[#0B4224]'
                                 : 'bg-[#FAF9F5] text-[#60564C] border-[#E7E2D8] hover:bg-[#FAF6EE]/80'
                             }`}
                           >
@@ -1170,19 +1885,19 @@ export default function HomePage() {
                           
                           {selectedLandmark === 'bixby' && (
                             <>
-                              <h4 className="font-serif text-xl font-bold text-[#1C1917]">Unkal Lake</h4>
+                              <h4 className="font-serif text-xl font-bold text-[#0B4224]">Unkal Lake</h4>
                               <p className="text-xs text-[#60564C] leading-relaxed font-light text-left">
                                 A stunning historical lake featuring a towering center statue of Swami Vivekananda, lush green gardens, and gorgeous boating services. It is Hubballi&apos;s favorite spot for scenic evening sunset walks and relaxed meditation.
                               </p>
                               <div className="bg-white/50 p-3 rounded text-[11px] text-[#60564C] space-y-1 text-left">
-                                <strong>Concierge Note:</strong> Best visited during golden hour or early evening when refreshing breezes wave across the water, and the colorful sunset reflects on the center statue. Only 10 minutes drive from Vardhan Hotel.
+                                <strong>Concierge Note:</strong> Best visited during golden hour or early evening when refreshing breezes wave across the water, and the colorful sunset reflects on the center statue. Only 10 minutes drive from Vardhhan Hotel.
                               </div>
                             </>
                           )}
 
                           {selectedLandmark === 'pfeiffer' && (
                             <>
-                              <h4 className="font-serif text-xl font-bold text-[#1C1917]">Nrupatunga Hill</h4>
+                              <h4 className="font-serif text-xl font-bold text-[#0B4224]">Nrupatunga Hill</h4>
                               <p className="text-xs text-[#60564C] leading-relaxed font-light text-left">
                                 A beautiful, panoramic hillock offering breezy views over the entire twin cities of Hubballi and Dharwad. It features tidy paved trekking pathways, lush tree guards, and peaceful settings, perfect for health and nature enthusiasts.
                               </p>
@@ -1194,7 +1909,7 @@ export default function HomePage() {
 
                           {selectedLandmark === 'mcway' && (
                             <>
-                              <h4 className="font-serif text-xl font-bold text-[#1C1917]">Indira Gandhi Glass House</h4>
+                              <h4 className="font-serif text-xl font-bold text-[#0B4224]">Indira Gandhi Glass House</h4>
                               <p className="text-xs text-[#60564C] leading-relaxed font-light text-left">
                                 A vibrant civic garden boasting an incredible layout and a magnificent glass structure modeled after London&apos;s Crystal Palace. It hosts pristine seasonal flower exhibitions, musical fountain dances, and sprawling green lawn carpets.
                               </p>
@@ -1206,7 +1921,7 @@ export default function HomePage() {
 
                           {selectedLandmark === 'pointsur' && (
                             <>
-                              <h4 className="font-serif text-xl font-bold text-[#1C1917]">Chandramouleshwara Temple</h4>
+                              <h4 className="font-serif text-xl font-bold text-[#0B4224]">Chandramouleshwara Temple</h4>
                               <p className="text-xs text-[#60564C] leading-relaxed font-light text-left">
                                 A spectacular 900-year-old Chalukyan-era temple dedicated to Lord Shiva, carved beautifully out of black basalt rock with stunning ancient architecture, intricate carvings, and polished black pillars.
                               </p>
@@ -1249,15 +1964,15 @@ export default function HomePage() {
                         onClick={() => setSelectedDirection('monterey')}
                         className="bg-[#FAF9F5] p-5 rounded border border-[#E7E2D8] space-y-3 cursor-pointer transition-all text-left"
                       >
-                        <div className="w-8 h-8 rounded-full bg-[#1C1917]/5 flex items-center justify-center text-[#C5A880]">
+                        <div className="w-8 h-8 rounded-full bg-[#0B4224]/5 flex items-center justify-center text-[#C5A880]">
                           <Car className="w-4 h-4" />
                         </div>
-                        <h4 className="font-serif text-sm font-bold text-[#1C1917]">From Hubballi Airport (HBX)</h4>
+                        <h4 className="font-serif text-sm font-bold text-[#0B4224]">From Hubballi Airport (HBX)</h4>
                         <span className="text-[10px] bg-white text-[#8C8375] px-2 py-0.5 rounded border border-[#E7E2D8] inline-block font-sans">
                           15 Minutes &bull; 6 Miles
                         </span>
                         <p className="text-xs text-[#60564C] leading-relaxed font-light font-sans text-left">
-                          Exit Hubli Airport, turn right onto Gokul Road. Continue straight past central industrial blocks. Drive down and Vardhan Hotel entrance at Shop No 1, Pride Icon will be on your left.
+                          Exit Hubli Airport, turn right onto Gokul Road. Continue straight past central industrial blocks. Drive down and Vardhhan Hotel entrance at Shop No 1, Pride Icon will be on your left.
                         </p>
                         <span className="text-[10px] text-[#C5A880] block font-sans font-bold">Click for details &bull;</span>
                       </motion.div>
@@ -1269,10 +1984,10 @@ export default function HomePage() {
                         onClick={() => setSelectedDirection('sfo')}
                         className="bg-[#FAF9F5] p-5 rounded border border-[#E7E2D8] space-y-3 cursor-pointer transition-all text-left"
                       >
-                        <div className="w-8 h-8 rounded-full bg-[#1C1917]/5 flex items-center justify-center text-[#C5A880]">
+                        <div className="w-8 h-8 rounded-full bg-[#0B4224]/5 flex items-center justify-center text-[#C5A880]">
                           <Navigation className="w-4 h-4" />
                         </div>
-                        <h4 className="font-serif text-sm font-bold text-[#1C1917]">From Hubballi Railway Station (UBL)</h4>
+                        <h4 className="font-serif text-sm font-bold text-[#0B4224]">From Hubballi Railway Station (UBL)</h4>
                         <span className="text-[10px] bg-white text-[#8C8375] px-2 py-0.5 rounded border border-[#E7E2D8] inline-block font-sans">
                           20 Minutes &bull; 4.5 Miles
                         </span>
@@ -1289,10 +2004,10 @@ export default function HomePage() {
                         onClick={() => setSelectedDirection('advisory')}
                         className="bg-[#FAF9F5] p-5 rounded border border-[#E7E2D8] space-y-3 cursor-pointer transition-all text-left"
                       >
-                        <div className="w-8 h-8 rounded-full bg-[#1C1917]/5 flex items-center justify-center text-[#EF4444]">
+                        <div className="w-8 h-8 rounded-full bg-[#0B4224]/5 flex items-center justify-center text-[#EF4444]">
                           <Map className="w-4 h-4" />
                         </div>
-                        <h4 className="font-serif text-sm font-bold text-[#1C1917]">Gokul Road Traffic Advice</h4>
+                        <h4 className="font-serif text-sm font-bold text-[#0B4224]">Gokul Road Traffic Advice</h4>
                         <span className="text-[10px] bg-white text-[#EF4444]/15 text-[#EF4444] px-2 py-0.5 rounded border border-[#EF4444]/20 inline-block font-sans font-bold">
                           City Navigation Check
                         </span>
@@ -1319,6 +2034,9 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="space-y-12 max-w-4xl mx-auto"
             >
+              {/* REVIEWS & VISITOR EXPERIENCES CAROUSEL */}
+              <PageCarousel images={reviewsCarouselImages} />
+
               <div className="text-center space-y-2">
                 <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#C5A880]">
                   Guest Ledger
@@ -1340,7 +2058,7 @@ export default function HomePage() {
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/20 z-10 pointer-events-none" />
                 <img 
-                  src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=1600&auto=format&fit=crop&q=80" 
+                  src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1600&auto=format&fit=crop&q=80" 
                   alt="Resort Guest Dining Experiences" 
                   className="object-cover w-full h-full transition-transform duration-10000 ease-out scale-100 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -1361,10 +2079,25 @@ export default function HomePage() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
                 {/* Review Ledger List */}
-                <div className="lg:col-span-7 space-y-4">
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0 },
+                    show: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.08 }
+                    }
+                  }}
+                  initial="hidden"
+                  animate="show"
+                  className="lg:col-span-7 space-y-4"
+                >
                   {reviews.map((rev) => (
                     <motion.div 
                       key={rev.id} 
+                      variants={{
+                        hidden: { opacity: 0, y: 15 },
+                        show: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                      }}
                       whileHover={{ y: -3, scale: 1.015, borderColor: '#C5A880', boxShadow: '0 8px 24px rgba(197, 168, 128, 0.08)' }}
                       whileTap={{ scale: 0.99 }}
                       onClick={() => setSelectedReview(rev)}
@@ -1394,7 +2127,7 @@ export default function HomePage() {
                       </span>
                     </motion.div>
                   ))}
-                </div>
+                </motion.div>
 
                 {/* Submit New Review Form */}
                 <div className="lg:col-span-5 bg-white p-6 rounded-lg border border-[#E7E2D8] space-y-4 shadow-sm">
@@ -1478,6 +2211,156 @@ export default function HomePage() {
             </motion.div>
           )}
 
+          {/* TAB 5.5: BLOG CHRONICLES */}
+          {activeTab === 'blog' && (
+            <motion.div
+              id="blog-tab"
+              key="blog"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-8 max-w-6xl mx-auto"
+            >
+              {/* BLOG IMAGE CAROUSEL */}
+              <PageCarousel images={blogCarouselImages} />
+
+              <div className="text-center space-y-2">
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#C5A880]">
+                  Vardhhan Archives
+                </span>
+                <h2 className="font-serif text-3xl font-bold text-[#1C1917]">
+                  The Shakahari Chronicles
+                </h2>
+                <p className="text-xs text-[#60564C] max-w-md mx-auto leading-relaxed">
+                  Deep culinary logs, Ayurvedic spice wisdom, wellness guides, and boutique stories fresh from Hubballi.
+                </p>
+              </div>
+
+              {/* SEARCH & FILTERS BAR */}
+              <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-4 rounded-lg border border-[#E7E2D8] shadow-xs">
+                {/* Search Bar */}
+                <div className="relative w-full md:w-80">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-[#A89F91]">
+                    <Search className="w-4 h-4 shrink-0" />
+                  </span>
+                  <input
+                    type="search"
+                    placeholder="Search our chronicles..."
+                    value={blogSearchQuery}
+                    onChange={(e) => setBlogSearchQuery(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2.5 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all placeholder:text-[#A89F91]/80"
+                  />
+                </div>
+
+                {/* Categories */}
+                <div className="flex flex-wrap gap-1.5 w-full md:w-auto justify-center md:justify-end">
+                  {(['All', 'Gastronomy', 'Wellness', 'Heritage', 'Behind the Scenes'] as const).map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setActiveBlogCategory(category)}
+                      className={`px-3 py-1.5 text-[10px] uppercase tracking-widest font-bold rounded transition-all duration-200 cursor-pointer ${
+                        activeBlogCategory === category
+                          ? 'bg-[#0B4224] text-white'
+                          : 'bg-[#FAF9F5] border border-[#E7E2D8] text-[#60564C] hover:border-[#0B4224]/50'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* BLOG ARTICLES GRID */}
+              {(() => {
+                const filteredBlogs = blogs.filter((post) => {
+                  const matchesCategory = activeBlogCategory === 'All' || post.category === activeBlogCategory;
+                  const matchesSearch = post.title.toLowerCase().includes(blogSearchQuery.toLowerCase()) || 
+                                        post.excerpt.toLowerCase().includes(blogSearchQuery.toLowerCase()) ||
+                                        post.content.toLowerCase().includes(blogSearchQuery.toLowerCase());
+                  return matchesCategory && matchesSearch;
+                });
+
+                if (filteredBlogs.length === 0) {
+                  return (
+                    <div className="text-center py-16 bg-white rounded-lg border border-[#E7E2D8] space-y-3">
+                      <FileText className="w-10 h-10 text-[#A89F91] mx-auto opacity-50" />
+                      <h4 className="font-serif text-md font-semibold text-[#1C1917]">No articles found matching your criteria</h4>
+                      <p className="text-xs text-[#8C8375]">Try adjusting your search keywords or browsing different categories.</p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredBlogs.map((post) => (
+                      <article 
+                        key={post.id} 
+                        className="bg-white rounded-lg overflow-hidden border border-[#E7E2D8] shadow-xs group hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                      >
+                        <div>
+                          {/* Image Header with Hover Effect */}
+                          <div className="relative aspect-video w-full overflow-hidden bg-[#FAF9F5] border-b border-[#E7E2D8]">
+                            <img 
+                              src={post.image || "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800"} 
+                              alt={post.title}
+                              className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                              referrerPolicy="no-referrer"
+                            />
+                            <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded text-[9px] uppercase tracking-wider font-extrabold text-[#0B4224] border border-[#0B4224]/10 shadow-3xs">
+                              {post.category}
+                            </div>
+                          </div>
+
+                          {/* Content Container */}
+                          <div className="p-5 space-y-2.5">
+                            <div className="flex items-center gap-3 text-[10px] text-[#8C8375] font-mono select-none">
+                              <span className="flex items-center gap-1">
+                                <Calendar className="w-3 h-3 text-[#C5A880]" />
+                                {post.date}
+                              </span>
+                              <span>•</span>
+                              <span className="flex items-center gap-1">
+                                <Clock className="w-3 h-3 text-[#C5A880]" />
+                                {post.readTime}
+                              </span>
+                            </div>
+
+                            <h3 className="font-serif text-base font-bold text-[#1C1917] group-hover:text-[#0B4224] transition-colors line-clamp-2 leading-snug">
+                              {post.title}
+                            </h3>
+
+                            <p className="text-xs text-[#60564C] leading-relaxed font-light line-clamp-3">
+                              {post.excerpt}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Read More Footer */}
+                        <div className="p-5 pt-0 border-t border-[#FAF6EE] mt-4 flex items-center justify-between">
+                          <span className="text-[10px] text-[#8C8375] flex items-center gap-1.5">
+                            <span className="w-4 h-4 rounded-full bg-[#FAF9F5] border border-[#CBD5E1]/40 flex items-center justify-center text-[9px] font-bold text-[#0B4224]">
+                              {post.author.charAt(0)}
+                            </span>
+                            By {post.author}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedBlog(post)}
+                            className="text-[10px] uppercase tracking-widest font-bold text-[#0B4224] hover:text-[#C5A880] flex items-center gap-1 cursor-pointer transition-colors"
+                          >
+                            Read Full
+                            <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+                          </button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                );
+              })()}
+            </motion.div>
+          )}
+
           {/* TAB 6: ADMIN PANEL */}
           {activeTab === 'admin' && (
             <motion.div
@@ -1489,60 +2372,130 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="space-y-8 max-w-6xl mx-auto"
             >
-              {/* BEAUTIFUL ADMINISTRATIVE KITCHEN TOOLS/INGREDIENTS BANNER */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative h-60 md:h-64 w-full rounded-lg overflow-hidden shadow-sm border border-[#E5D5C5] group bg-[#FAF9F5] mb-8"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/20 z-10 pointer-events-none" />
-                <img 
-                  src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=1600&auto=format&fit=crop&q=80" 
-                  alt="Fine Kitchen Spices, Herbs and Culinary Ledgers" 
-                  className="object-cover w-full h-full transition-transform duration-10000 ease-out scale-100 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 md:p-8 space-y-1.5 text-left">
-                  <span className="text-[10px] tracking-[0.3em] uppercase font-bold text-[#C5A880]">
-                    Executive Kitchen Control
-                  </span>
-                  <h3 className="font-serif text-2xl md:text-3xl font-extrabold text-[#FAF9F5] leading-tight max-w-lg">
-                    Vardhan Culinary Catalog
-                  </h3>
-                  <p className="text-xs text-[#FAF6EE]/80 leading-relaxed max-w-xl font-light">
-                    Establish and manage daily delicacies, select premier pairing reserves, or update exquisite dietary tags for optimal guest navigation.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Header and top info */}
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#E7E2D8] pb-6">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-[#C5A880]" />
-                    <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#C5A880]">
-                      Vardhan Kitchen Console
-                    </span>
+              {!isAdminLoggedIn ? (
+                <div className="max-w-md mx-auto py-12 px-6 bg-white border border-[#E7E2D8] rounded-lg shadow-2xs space-y-6 text-center my-8">
+                  <div className="space-y-2">
+                    <div className="w-12 h-12 bg-[#FAF6EE] border border-[#E7E2D8] rounded-full mx-auto flex items-center justify-center text-[#C5A880]">
+                      <Lock className="w-5 h-5 animate-pulse" />
+                    </div>
+                    <div className="space-y-1">
+                      <span className="text-[10px] uppercase tracking-widest font-extrabold text-[#C5A880] block">Vardhhan Hospitality Console</span>
+                      <h3 className="font-serif text-2xl font-bold text-[#1C1917]">Administrative Sign In</h3>
+                      <p className="text-xs text-[#60564C] leading-relaxed font-light">
+                        Access is restricted to resort managers, culinary chefs, and editorial authors.
+                      </p>
+                    </div>
                   </div>
-                  <h2 className="font-serif text-3xl font-bold text-[#1C1917]">
-                    Menu Administration
-                  </h2>
-                  <p className="text-xs text-[#60564C] max-w-lg leading-relaxed font-light">
-                    As an administrator, you hold complete creative control over Vardhan&apos;s culinary offerings. Add or alter dishes to dynamically update the live menu display.
-                  </p>
+
+                  {loginError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3 bg-red-50 border border-red-200 text-red-800 rounded text-xs font-semibold text-left"
+                    >
+                      {loginError}
+                    </motion.div>
+                  )}
+
+                  <form onSubmit={handleAdminLogin} className="space-y-4 text-left">
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase font-extrabold tracking-wider text-[#60564C] block">Steward Username</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. admin"
+                        value={loginUsername}
+                        onChange={(e) => setLoginUsername(e.target.value)}
+                        className="w-full px-3 py-2 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all placeholder:text-[#A89F91]/50"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase font-extrabold tracking-wider text-[#60564C] block">Master Key (Password)</label>
+                      <input
+                        type="password"
+                        required
+                        placeholder="••••••••"
+                        value={loginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        className="w-full px-3 py-2 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all placeholder:text-[#A89F91]/50"
+                      />
+                    </div>
+
+                    <div className="bg-[#FAF9F5]/80 p-3.5 border border-dashed border-[#E7E2D8] rounded text-[10px] text-[#8C8375] leading-relaxed font-light">
+                      <strong className="block text-[#60564C] font-semibold mb-0.5 uppercase tracking-wider text-[8px]">Steward Access Guide</strong>
+                      To inspect or modify Vardhhan&apos;s culinary assets during preview, authenticate using the authorized caretaker credentials:
+                      <div className="mt-1 font-semibold text-[#1C1917] font-mono">
+                        Username: <span className="bg-[#EAE5D9]/50 px-1.5 py-0.5 rounded text-[#0B4224]">admin</span> &nbsp; Password: <span className="bg-[#EAE5D9]/50 px-1.5 py-0.5 rounded text-[#0B4224]">admin</span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-[#0B4224] hover:bg-[#08301a] text-white py-2.5 text-xs font-bold uppercase tracking-widest rounded transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer mt-2 animate-none"
+                    >
+                      <Lock className="w-3.5 h-3.5" />
+                      Authenticate Steward
+                    </button>
+                  </form>
+
+                  <div className="pt-2 border-t border-[#FAF6EE] flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('home')}
+                      className="text-[10px] uppercase tracking-wider text-[#8C8375] hover:text-[#0B4224] flex items-center gap-1 transition-colors cursor-pointer"
+                    >
+                      <ArrowLeft className="w-3" />
+                      Return to Resort View
+                    </button>
+                  </div>
                 </div>
-                
-                {/* Restore Defaults Button */}
-                <button
-                  type="button"
-                  onClick={handleResetToDefaultMenu}
-                  className="flex items-center gap-2 bg-[#FAF6EE] hover:bg-[#EAE5D9]/40 border border-[#E7E2D8] hover:border-[#C5A880] text-[#1C1917] hover:text-[#C5A880] text-[10px] uppercase tracking-wider font-semibold px-4 py-2.5 rounded-sm transition-all duration-200 cursor-pointer"
-                >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  Restore Heirloom Defaults
-                </button>
-              </div>
+              ) : (
+                <>
+                  {/* BRAND ADMINISTRATIVE IMAGE CAROUSEL */}
+                  <PageCarousel images={adminCarouselImages} />
+
+                  {/* Header and top info */}
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#E7E2D8] pb-6">
+                    <div className="space-y-1 text-left">
+                      <div className="flex items-center gap-2">
+                        <ShieldCheck className="w-5 h-5 text-[#C5A880]" />
+                        <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#C5A880]">
+                          Vardhhan Kitchen Console
+                        </span>
+                      </div>
+                      <h2 className="font-serif text-3xl font-bold text-[#1C1917]">
+                        {activeAdminSubTab === 'menu' ? 'Menu Administration' : 'Blog Chronicles Administration'}
+                      </h2>
+                      <p className="text-xs text-[#60564C] max-w-lg leading-relaxed font-light">
+                        {activeAdminSubTab === 'menu' 
+                          ? "As an administrator, you hold complete creative control over Vardhhan's culinary offerings. Add or alter dishes to dynamically update the live menu display."
+                          : "Document the rich culinary history, Ayurvedic ingredients benefits, wellness tips, and backend resort stories inside Vardhhan's luxury chronicles."
+                        }
+                      </p>
+                    </div>
+                    
+                    {/* Console Actions */}
+                    <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                      <button
+                        type="button"
+                        onClick={activeAdminSubTab === 'menu' ? handleResetToDefaultMenu : handleResetToDefaultBlogs}
+                        className="flex-grow md:flex-grow-0 flex items-center justify-center gap-2 bg-[#FAF6EE] hover:bg-[#EAE5D9]/40 border border-[#E7E2D8] hover:border-[#C5A880] text-[#1C1917] hover:text-[#C5A880] text-[10px] uppercase tracking-wider font-semibold px-4 py-2.5 rounded-sm transition-all duration-200 cursor-pointer"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        {activeAdminSubTab === 'menu' ? 'Restore Heirloom Defaults' : 'Restore Chronicle Defaults'}
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={handleAdminLogout}
+                        className="flex-grow md:flex-grow-0 flex items-center justify-center gap-2 bg-red-50/40 hover:bg-red-50 border border-red-100 hover:border-red-300 text-red-700 hover:text-red-800 text-[10px] uppercase tracking-wider font-semibold px-4 py-2.5 rounded-sm transition-all duration-200 cursor-pointer"
+                      >
+                        <LogOut className="w-3.5 h-3.5" />
+                        Exit Console
+                      </button>
+                    </div>
+                  </div>
 
               {/* Status Alert Message Banner */}
               {adminSuccessMessage && (
@@ -1554,12 +2507,54 @@ export default function HomePage() {
                   <div className="w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center text-white shrink-0 shadow-2xs">
                     <Check className="w-3 h-3" />
                   </div>
-                  <span className="font-medium">{adminSuccessMessage}</span>
+                  <span className="font-medium text-left">{adminSuccessMessage}</span>
                 </motion.div>
               )}
 
+              {blogSuccessMessage && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-emerald-50 border border-emerald-200 rounded p-4 text-xs text-emerald-800 flex items-center gap-2.5"
+                >
+                  <div className="w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center text-white shrink-0 shadow-2xs">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span className="font-medium text-left">{blogSuccessMessage}</span>
+                </motion.div>
+              )}
+
+              {/* INNER ADMIN NAVIGATION TABS */}
+              <div className="flex gap-2 border-b border-[#E7E2D8] pb-0.5 select-none md:justify-start justify-center">
+                <button
+                  type="button"
+                  onClick={() => setActiveAdminSubTab('menu')}
+                  className={`relative pb-3 text-xs uppercase tracking-widest font-bold px-4 cursor-pointer transition-all duration-200 ${
+                    activeAdminSubTab === 'menu' ? 'text-[#0B4224]' : 'text-[#8C8375] hover:text-[#0B4224]'
+                  }`}
+                >
+                  Manage Menu Dishes
+                  {activeAdminSubTab === 'menu' && (
+                    <motion.div layoutId="adminSubActive" className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#0B4224]" />
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveAdminSubTab('blog')}
+                  className={`relative pb-3 text-xs uppercase tracking-widest font-bold px-4 cursor-pointer transition-all duration-200 ${
+                    activeAdminSubTab === 'blog' ? 'text-[#0B4224]' : 'text-[#8C8375] hover:text-[#0B4224]'
+                  }`}
+                >
+                  Manage Blog Chronicles
+                  {activeAdminSubTab === 'blog' && (
+                    <motion.div layoutId="adminSubActive" className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#0B4224]" />
+                  )}
+                </button>
+              </div>
+
               {/* Two Panel Workstation */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {activeAdminSubTab === 'menu' && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
                 {/* Workstation Left: Live Ledger list of all menu items inside database */}
                 <div className="lg:col-span-7 space-y-4">
@@ -1663,6 +2658,11 @@ export default function HomePage() {
                     </div>
 
                     <form onSubmit={handleAdminFormSubmit} className="space-y-4">
+                      {adminFormError && (
+                        <div className="p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded font-semibold text-left">
+                          {adminFormError}
+                        </div>
+                      )}
                       
                       {/* Name field */}
                       <div>
@@ -1800,8 +2800,343 @@ export default function HomePage() {
                 </div>
 
               </div>
-            </motion.div>
+              )}
+
+              {/* Blog Workspace */}
+              {activeAdminSubTab === 'blog' && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  
+                  {/* Ledger of All Blogs */}
+                  <div className="lg:col-span-7 space-y-4">
+                    <div className="bg-white p-5 rounded-lg border border-[#E7E2D8]">
+                      <div className="flex justify-between items-center border-b border-[#FAF6EE] pb-3 mb-4">
+                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-[#60564C]">
+                          Chronicles Ledger ({blogs.length} posts total)
+                        </span>
+                        <span className="text-[10px] text-[#A89F91] font-mono leading-none">
+                          Heirloom Database Connected
+                        </span>
+                      </div>
+
+                      {/* Admin Blog Search */}
+                      <div className="relative mb-4">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-[#A89F91]">
+                          <Search className="w-3.5 h-3.5" />
+                        </span>
+                        <input
+                          type="text"
+                          placeholder="Filter chronicles in ledger..."
+                          value={blogAdminSearch}
+                          onChange={(e) => setBlogAdminSearch(e.target.value)}
+                          className="w-full pl-9 pr-4 py-2 bg-[#FAF9F5]/50 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all"
+                        />
+                      </div>
+
+                      {/* Blogs List */}
+                      <div className="space-y-3.5 max-h-[620px] overflow-y-auto pr-2 custom-scrollbar">
+                        {(() => {
+                          const ledgerBlogs = blogs.filter(post => 
+                            post.title.toLowerCase().includes(blogAdminSearch.toLowerCase()) ||
+                            post.category.toLowerCase().includes(blogAdminSearch.toLowerCase()) ||
+                            post.author.toLowerCase().includes(blogAdminSearch.toLowerCase())
+                          );
+
+                          if (ledgerBlogs.length === 0) {
+                            return (
+                              <div className="text-center py-10 bg-[#FAF9F5]/40 border border-dashed border-[#E7E2D8] rounded text-xs text-[#8C8375] space-y-1">
+                                <FileText className="w-6 h-6 mx-auto opacity-40 text-[#A89F91]" />
+                                <p className="font-semibold text-center">No posts found</p>
+                                <p className="text-[10px] text-center">Create a new chronicle on the right panel.</p>
+                              </div>
+                            );
+                          }
+
+                          return ledgerBlogs.map((post) => (
+                            <div key={post.id} className="p-4 bg-[#FAF9F5]/70 hover:bg-[#FAF9F5] border border-[#E7E2D8] rounded transition-all duration-150 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                              <div className="flex items-start gap-3.5 flex-1 w-full">
+                                <div className="w-12 h-12 rounded border border-[#E7E2D8] overflow-hidden shrink-0 bg-white">
+                                  <img 
+                                    src={post.image || "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=100&auto=format&fit=crop&q=80"}
+                                    alt={post.title}
+                                    className="w-full h-full object-cover"
+                                    referrerPolicy="no-referrer"
+                                  />
+                                </div>
+                                <div className="space-y-1 flex-grow">
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    <h4 className="font-serif text-sm font-bold text-[#1C1917] leading-tight text-left">{post.title}</h4>
+                                    <span className="bg-[#0B4224]/10 text-[#0B4224] text-[8px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded leading-none">
+                                      {post.category}
+                                    </span>
+                                  </div>
+                                  <p className="text-[11px] text-[#60564C] leading-snug font-light line-clamp-2 text-left">{post.excerpt}</p>
+                                  <div className="flex items-center gap-2 text-[9px] text-[#8C8375] font-mono select-none pt-0.5">
+                                    <span>By {post.author}</span>
+                                    <span>•</span>
+                                    <span>{post.date || 'Today'}</span>
+                                    <span>•</span>
+                                    <span>{post.readTime || '3 min read'}</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="flex sm:flex-col justify-end items-end gap-2.5 shrink-0">
+                                <div className="flex gap-2">
+                                  <button
+                                    type="button"
+                                    onClick={() => startEditBlogPost(post)}
+                                    className="w-8 h-8 rounded border border-[#E7E2D8] hover:border-[#0B4224] bg-white flex items-center justify-center text-[#8C8375] hover:text-[#0B4224] transition-colors cursor-pointer"
+                                    title="Edit Chronicle"
+                                  >
+                                    <Edit3 className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDeleteBlogPost(post.id)}
+                                    className="w-8 h-8 rounded border border-[#E7E2D8] hover:border-red-500 bg-white flex items-center justify-center text-[#8C8375] hover:text-red-500 transition-colors cursor-pointer"
+                                    title="Delete Chronicle"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          ));
+                        })()}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Creation Form Panel */}
+                  <div className="lg:col-span-5">
+                    <div className="bg-white p-5 rounded-lg border border-[#E7E2D8] space-y-4 shadow-3xs sticky top-4">
+                      <div>
+                        <span className="text-[9px] uppercase tracking-widest text-[#C5A880] font-extrabold block">Chronicles Editorial Desk</span>
+                        <h3 className="font-serif text-lg font-bold text-[#1C1917]">
+                          {editingBlogId ? 'Editor: Editorial Mode' : 'Author: Compose Draft'}
+                        </h3>
+                      </div>
+
+                      <form onSubmit={handleCreateOrUpdateBlogPost} className="space-y-4 text-left">
+                        
+                        {/* Title input */}
+                        <div className="space-y-1">
+                          <label className="text-[10px] uppercase font-bold tracking-wider text-[#60564C] block">Chronicle Title *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Enter article title..."
+                            value={blogForm.title}
+                            onChange={(e) => setBlogForm(prev => ({ ...prev, title: e.target.value }))}
+                            className="w-full px-3 py-2 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all placeholder:text-[#A89F91]/50"
+                          />
+                        </div>
+
+                        {/* Category and Author Row */}
+                        <div className="grid grid-cols-2 gap-3.5">
+                          <div className="space-y-1">
+                            <label className="text-[10px] uppercase font-bold tracking-wider text-[#60564C] block">Category</label>
+                            <select
+                              value={blogForm.category}
+                              onChange={(e) => setBlogForm(prev => ({ ...prev, category: e.target.value as any }))}
+                              className="w-full px-2 py-2 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all"
+                            >
+                              <option value="Gastronomy">Gastronomy</option>
+                              <option value="Wellness">Wellness</option>
+                              <option value="Heritage">Heritage</option>
+                              <option value="Behind the Scenes">Behind the Scenes</option>
+                            </select>
+                          </div>
+                          
+                          <div className="space-y-1">
+                            <label className="text-[10px] uppercase font-bold tracking-wider text-[#60564C] block">Author Name</label>
+                            <input
+                              type="text"
+                              placeholder="Chef Vardhhan"
+                              value={blogForm.author}
+                              onChange={(e) => setBlogForm(prev => ({ ...prev, author: e.target.value }))}
+                              className="w-full px-3 py-2 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all placeholder:text-[#A89F91]/50"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Excerpt */}
+                        <div className="space-y-1">
+                          <label className="text-[10px] uppercase font-bold tracking-wider text-[#60564C] block">Excerpt (Short Description) *</label>
+                          <textarea
+                            required
+                            rows={2}
+                            maxLength={220}
+                            placeholder="A summary of the article to show in feeds..."
+                            value={blogForm.excerpt}
+                            onChange={(e) => setBlogForm(prev => ({ ...prev, excerpt: e.target.value }))}
+                            className="w-full px-3 py-2 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all placeholder:text-[#A89F91]/50 resize-none font-light leading-relaxed font-sans"
+                          />
+                        </div>
+
+                        {/* Article Content Body */}
+                        <div className="space-y-1">
+                          <label className="text-[10px] uppercase font-bold tracking-wider text-[#60564C] block">Chronicle Content Body *</label>
+                          <textarea
+                            required
+                            rows={6}
+                            placeholder="Pen down your article body here. Separate paragraphs with double enter line breaks (\n\n)..."
+                            value={blogForm.content}
+                            onChange={(e) => setBlogForm(prev => ({ ...prev, content: e.target.value }))}
+                            className="w-full px-3 py-2 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-xs rounded transition-all placeholder:text-[#A89F91]/50 resize-y font-light leading-relaxed font-sans"
+                          />
+                        </div>
+
+                        {/* Drag & Drop Local Image Upload with fallback Text Input */}
+                        <div className="space-y-1">
+                          <label className="text-[10px] uppercase font-bold tracking-wider text-[#60564C] block">Featured Banner Image</label>
+                          
+                          {/* Drag Zone */}
+                          <div
+                            onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
+                            onDragLeave={() => setIsDragOver(false)}
+                            onDrop={(e) => {
+                              e.preventDefault();
+                              setIsDragOver(false);
+                              if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                                const file = e.dataTransfer.files[0];
+                                if (!file.type.startsWith('image/')) {
+                                  setBlogImageUploadError('Only image files are permitted.');
+                                  return;
+                                }
+                                if (file.size > 2 * 1024 * 1024) {
+                                  setBlogImageUploadError('Image size should be less than 2MB.');
+                                  return;
+                                }
+                                setBlogImageUploadError('');
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                  setBlogForm(prev => ({ ...prev, image: reader.result as string }));
+                                };
+                                reader.readAsDataURL(file);
+                              }
+                            }}
+                            className={`border-2 border-dashed rounded p-4 text-center cursor-pointer transition-all ${
+                              isDragOver 
+                                ? 'border-[#0B4224] bg-[#0B4224]/5' 
+                                : blogForm.image 
+                                  ? 'border-emerald-200 bg-emerald-50/15' 
+                                  : 'border-[#E7E2D8] hover:border-[#C5A880] bg-[#FAF9F5]/40'
+                            }`}
+                          >
+                            <input
+                              type="file"
+                              id="blog-image-picker"
+                              accept="image/*"
+                              onChange={(e) => {
+                                if (e.target.files && e.target.files[0]) {
+                                  const file = e.target.files[0];
+                                  if (!file.type.startsWith('image/')) {
+                                    setBlogImageUploadError('Only image files are permitted.');
+                                    return;
+                                  }
+                                  if (file.size > 2 * 1024 * 1024) {
+                                    setBlogImageUploadError('Image size should be less than 2MB.');
+                                    return;
+                                  }
+                                  setBlogImageUploadError('');
+                                  const rdr = new FileReader();
+                                  rdr.onloadend = () => {
+                                    setBlogForm(prev => ({ ...prev, image: rdr.result as string }));
+                                  };
+                                  rdr.readAsDataURL(file);
+                                }
+                              }}
+                              className="hidden"
+                            />
+                            <label htmlFor="blog-image-picker" className="cursor-pointer block w-full h-full">
+                              {blogForm.image ? (
+                                <div className="space-y-2">
+                                  <div className="relative w-36 h-20 mx-auto rounded border border-[#E7E2D8] overflow-hidden shadow-2xs bg-white">
+                                    <img src={blogForm.image} alt="Upload preview" className="w-full h-full object-cover" />
+                                    <button
+                                      type="button"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                        ev.stopPropagation();
+                                        setBlogForm(prev => ({ ...prev, image: '' }));
+                                      }}
+                                      className="absolute top-1 right-1 bg-red-600 text-white w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-bold shadow-xs hover:bg-red-700 cursor-pointer text-center"
+                                      title="Remove image"
+                                    >
+                                      ✕
+                                    </button>
+                                  </div>
+                                  <p className="text-[10px] text-emerald-800 font-medium">Image uploaded successfully</p>
+                                </div>
+                              ) : (
+                                <div className="space-y-1 py-1 text-[#8C8375]">
+                                  <Upload className="w-5 h-5 mx-auto text-[#C5A880] opacity-85" />
+                                  <p className="text-[10px] font-bold uppercase tracking-wider text-[#60564C]">Drag & Drop Featured Image</p>
+                                  <p className="text-[9px] font-light">or click to browse local files (max 2MB)</p>
+                                </div>
+                              )}
+                            </label>
+                          </div>
+
+                          {/* Fallback Image Web URL */}
+                          <div className="pt-1.5 space-y-1 text-left">
+                            <label className="text-[8px] uppercase font-bold tracking-widest text-[#8C8375] block">or specify direct image URL</label>
+                            <input
+                              type="url"
+                              placeholder="https://images.unsplash.com/photo-..."
+                              value={blogForm.image.startsWith('data:') ? '' : blogForm.image}
+                              onChange={(e) => setBlogForm(prev => ({ ...prev, image: e.target.value }))}
+                              className="w-full px-3 py-1.5 bg-[#FAF9F5]/70 border border-[#E7E2D8] focus:border-[#0B4224] focus:outline-none focus:ring-1 focus:ring-[#0B4224] text-[10px] rounded transition-all placeholder:text-[#A89F91]/40"
+                            />
+                          </div>
+
+                          {blogImageUploadError && (
+                            <p className="text-[10px] text-red-600 font-semibold">{blogImageUploadError}</p>
+                          )}
+                        </div>
+
+                        {/* Action buttons */}
+                        <div className="pt-2 flex gap-3 select-none">
+                          {editingBlogId ? (
+                            <>
+                              <button
+                                type="submit"
+                                className="flex-1 bg-[#0B4224] hover:bg-[#08301a] text-white py-2.5 text-xs font-bold uppercase tracking-wider rounded transition-colors shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                              >
+                                <Check className="w-3.5 h-3.5" />
+                                Save Updates
+                              </button>
+                              <button
+                                type="button"
+                                onClick={cancelEditBlogPost}
+                                className="flex-1 bg-white border border-[#E7E2D8] hover:bg-[#FAF9F5]/40 text-[#60564C] py-2.5 text-xs font-bold uppercase tracking-wider rounded transition-colors cursor-pointer text-center"
+                              >
+                                Cancel
+                              </button>
+                            </>
+                          ) : (
+                            <button
+                              type="submit"
+                              className="w-full bg-[#1C1917] hover:bg-[#34302C] text-white py-2.5 text-xs font-bold uppercase tracking-wider rounded transition-colors shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                            >
+                              <BookOpen className="w-3.5 h-3.5 text-[#C5A880]" />
+                              Post Chronicle
+                            </button>
+                          )}
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+
+                </div>
+              )}
+
+            </>
           )}
+        </motion.div>
+      )}
 
         </AnimatePresence>
 
@@ -2369,6 +3704,173 @@ export default function HomePage() {
             </motion.div>
           )}
 
+          {/* 7. CHRONICLES ARTICLE DETAILED READER */}
+          {selectedBlog && (
+            <motion.div 
+              key="blog-reader-modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto"
+              onClick={() => setSelectedBlog(null)}
+            >
+              <motion.div 
+                initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 30, scale: 0.98 }}
+                className="bg-white rounded-lg border border-[#E7E2D8] shadow-2xl max-w-2xl w-full text-left overflow-hidden relative my-8"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button 
+                  onClick={() => setSelectedBlog(null)}
+                  className="absolute top-4 right-4 z-20 text-[#8C8375] hover:text-[#1C1917] w-8 h-8 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center border border-[#E7E2D8] transition-all cursor-pointer shadow-xs font-bold"
+                  aria-label="Close Article"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                {/* Hero Feature Image */}
+                <div className="relative h-60 md:h-72 w-full overflow-hidden bg-[#FAF9F5]">
+                  <img 
+                    src={selectedBlog.image || "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=1000"} 
+                    alt={selectedBlog.title} 
+                    className="object-cover w-full h-full"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute bottom-5 left-6 right-6 text-white space-y-1.5 md:space-y-2 text-left">
+                    <span className="bg-[#C5A880] text-white text-[9px] uppercase tracking-widest font-bold px-2.5 py-1 rounded shadow-3xs inline-block">
+                      {selectedBlog.category}
+                    </span>
+                    <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold leading-tight">
+                      {selectedBlog.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Article Body Content */}
+                <div className="p-6 md:p-8 space-y-6">
+                  {/* Metadata Row */}
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-[#8C8375] font-mono border-b border-[#FAF6EE] pb-4 select-none">
+                    <span className="flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5 text-[#C5A880]" />
+                      By {selectedBlog.author}
+                    </span>
+                    <span className="text-[#8C8375]/35">•</span>
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-[#C5A880]" />
+                      {selectedBlog.date}
+                    </span>
+                    <span className="text-[#8C8375]/35">•</span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-[#C5A880]" />
+                      {selectedBlog.readTime}
+                    </span>
+                  </div>
+
+                  {/* Body Text Blocks */}
+                  <div className="text-sm text-[#34302C] leading-relaxed font-sans space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar text-justify font-light">
+                    {selectedBlog.content.split('\n\n').map((paragraph, index) => (
+                      <p key={index} className="indent-4 first:indent-0">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+
+                  {/* Closure Footer */}
+                  <div className="pt-3 border-t border-[#FAF6EE] flex justify-between items-center bg-[#FAF9F5]/40 -mx-6 -mb-6 md:-mx-8 md:-mb-8 p-4 md:p-6 select-none">
+                    <div className="text-[10px] text-[#8C8375] italic">
+                      Part of Vardhhan Hotel archives.
+                    </div>
+                    <button 
+                      onClick={() => setSelectedBlog(null)}
+                      className="bg-[#1C1917] hover:bg-[#34302C] text-[#FAF9F5] px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer font-sans"
+                    >
+                      Acknowledge Chronicle
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* 8. PRIVACY POLICY & TERMS CHRONICLES */}
+          {selectedPolicy && (
+            <motion.div 
+              key="policy-modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto"
+              onClick={() => setSelectedPolicy(null)}
+            >
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                className="bg-white rounded-lg border border-[#E7E2D8] shadow-2xl max-w-lg w-full text-left p-6 space-y-4 relative"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  onClick={() => setSelectedPolicy(null)}
+                  className="absolute top-4 right-4 text-[#8C8375] hover:text-[#1C1917] w-7 h-7 rounded-full bg-[#FAF9F5] flex items-center justify-center border border-[#E7E2D8] transition-all cursor-pointer font-bold"
+                  aria-label="Close"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                {selectedPolicy === 'privacy' && (
+                  <div className="space-y-3">
+                    <span className="text-[9px] uppercase tracking-widest text-[#C5A880] font-extrabold block">Legal & Security Standard</span>
+                    <h3 className="font-serif text-xl font-bold text-[#1C1917]">Privacy Policy</h3>
+                    <div className="text-xs text-[#60564C] leading-relaxed font-light space-y-3 max-h-[350px] overflow-y-auto pr-1">
+                      <p>At Vardhhan Hotel, your digital privacy remains as highly respected as your quiet physical stay with us on Gokul Road.</p>
+                      <p><strong>1. Information Collection:</strong> We collect details you explicitly submit through our contact desks, preorder sheets, or review portals including names, email addresses, phone coordinates, and dietary allergies.</p>
+                      <p><strong>2. Usage:</strong> Your coordinates are used purely to coordinate direct shuttle services, customize traditional Indian recipe servings, or sync table reservations. We strictly never sell, trade, or distribute your private profiles to global marketing rings.</p>
+                      <p><strong>3. Storage Security:</strong> Data is logged safely inside secure browser environments or private secure storage with industry-standard firewalls. Check-in records can be deleted upon manual checkout requests at the reception front office.</p>
+                    </div>
+                  </div>
+                )}
+
+                {selectedPolicy === 'terms' && (
+                  <div className="space-y-3">
+                    <span className="text-[9px] uppercase tracking-widest text-[#C5A880] font-extrabold block">Legal & Security Standard</span>
+                    <h3 className="font-serif text-xl font-bold text-[#1C1917]">Terms & Conditions</h3>
+                    <div className="text-xs text-[#60564C] leading-relaxed font-light space-y-3 max-h-[350px] overflow-y-auto pr-1">
+                      <p>By browsing this platform or utilizing the booking portals of Vardhhan Hotel & Restaurant at Pride Icon, you agree to these legal conditions:</p>
+                      <p><strong>1. Pure Vegetarian (Shakahari) Policy:</strong> Guests are strictly requested to honor the 100% pure vegetarian, eggless, alcohol-free standards of our restaurant. Bringing external meats, eggs, or spirits inside the bistro dining area or public courtyards is strictly forbidden to preserve traditional sanctity.</p>
+                      <p><strong>2. Check-in / Checkout Coordinates:</strong> Standard room check-ins occur at 12:00 PM and checkouts by 11:00 AM. Cancellations or changes to table bookings must be notified 2 hours in advance via our direct concierge line.</p>
+                      <p><strong>3. User Postings:</strong> Re-routing raw computer scripts, posting false reviews, or vandalizing administrative entries within the public registry is legally actionable.</p>
+                    </div>
+                  </div>
+                )}
+
+                {selectedPolicy === 'cookies' && (
+                  <div className="space-y-3">
+                    <span className="text-[9px] uppercase tracking-widest text-[#C5A880] font-extrabold block">Legal & Security Standard</span>
+                    <h3 className="font-serif text-xl font-bold text-[#1C1917]">Cookies & Prefs Policy</h3>
+                    <div className="text-xs text-[#60564C] leading-relaxed font-light space-y-3 max-h-[350px] overflow-y-auto pr-1">
+                      <p>We respect your peace of mind. Our platform utilizes simple, essential, local browser storage or cookies to provide secure authentication, maintain admin session states, and preserve guest dining preferences.</p>
+                      <p><strong>1. Essential Cookies:</strong> Required for core website functions such as keeping you authenticated in our admin panels or remembering your active navigation tabs.</p>
+                      <p><strong>2. Detail Preferences:</strong> Remembers your active filter settings, search queries, or selected dishes to offer an elevated, seamless digital experience.</p>
+                      <p><strong>3. No Third-Party Tracking:</strong> We strictly do not utilize advertising cookies or cross-site tracking engines to monitor your browsing habits across the web.</p>
+                    </div>
+                  </div>
+                )}
+
+                <div className="pt-2 text-center">
+                  <button 
+                    onClick={() => setSelectedPolicy(null)}
+                    className="w-full bg-[#1C1917] hover:bg-[#34302C] text-white py-2.5 text-xs font-semibold rounded cursor-pointer font-sans"
+                  >
+                    Agree and Close
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+
         </AnimatePresence>
       </main>
 
@@ -2379,7 +3881,7 @@ export default function HomePage() {
           {/* Column 1: Brand & Socials */}
           <div className="md:col-span-4 space-y-4">
             <h5 className="font-serif text-[#FAF9F5] text-md font-bold tracking-wider">
-              Vardhan Hotel & Restaurant
+              Vardhhan Hotel & Restaurant
             </h5>
             <p className="text-xs text-[#8C8375] leading-relaxed max-w-sm text-left">
               An award-winning boutique hotel prioritizing pure, exquisite 100% vegetarian culinary masterpieces and comfortable personal care.
@@ -2440,6 +3942,7 @@ export default function HomePage() {
               <button onClick={() => setActiveTab('about')} className="text-left hover:text-[#FAF9F5] hover:underline decoration-[#C5A880] transition-colors cursor-pointer text-[#8C8375]">About Us</button>
               <button onClick={() => { setActiveTab('menu'); setMenuSubTab('all'); }} className="text-left hover:text-[#FAF9F5] hover:underline decoration-[#C5A880] transition-colors cursor-pointer text-[#8C8375]">Menu</button>
               <button onClick={() => setActiveTab('reviews')} className="text-left hover:text-[#FAF9F5] hover:underline decoration-[#C5A880] transition-colors cursor-pointer text-[#8C8375]">Reviews</button>
+              <button onClick={() => setActiveTab('blog')} className="text-left hover:text-[#FAF9F5] hover:underline decoration-[#C5A880] transition-colors cursor-pointer text-[#8C8375]">Blog Chronicles</button>
               <button onClick={() => setActiveTab('contact')} className="text-left hover:text-[#FAF9F5] hover:underline decoration-[#C5A880] transition-colors cursor-pointer text-[#8C8375]">Contact Us</button>
             </div>
           </div>
@@ -2491,14 +3994,99 @@ export default function HomePage() {
               Gokul Road, Hubballi - 580030
             </p>
             <div className="pt-2 border-t border-[#EAE5D9]/10 text-[11px] space-y-1 text-left">
-              <p>&copy; {new Date().getFullYear()} Vardhan Hotel.</p>
+              <p>&copy; {new Date().getFullYear()} Vardhhan Hotel.</p>
               <p>All Rights Reserved.</p>
+              <div className="flex flex-wrap items-center gap-1.5 py-1 select-none">
+                <button 
+                  type="button" 
+                  onClick={() => setSelectedPolicy('privacy')} 
+                  className="hover:text-[#FAF9F5] hover:underline transition-colors text-[#8C8375] text-[10px] cursor-pointer"
+                >
+                  Privacy Policy
+                </button>
+                <span className="text-[#8C8375]/40 text-[9px]">•</span>
+                <button 
+                  type="button" 
+                  onClick={() => setSelectedPolicy('terms')} 
+                  className="hover:text-[#FAF9F5] hover:underline transition-colors text-[#8C8375] text-[10px] cursor-pointer"
+                >
+                  Terms & Conditions
+                </button>
+                <span className="text-[#8C8375]/40 text-[9px]">•</span>
+                <button 
+                  type="button" 
+                  onClick={() => setSelectedPolicy('cookies')} 
+                  className="hover:text-[#FAF9F5] hover:underline transition-colors text-[#8C8375] text-[10px] cursor-pointer"
+                >
+                  Cookie Policy
+                </button>
+              </div>
               <p className="text-[10px] tracking-widest uppercase text-[#C5A880] font-semibold mt-1">Hubballi, Karnataka</p>
             </div>
           </div>
 
         </div>
       </footer>
+
+      {/* CUSTOM CONFIRMATION OVERLAY (IFrame & Sandbox Friendly) */}
+      <AnimatePresence>
+        {customConfirm.isOpen && (
+          <motion.div
+            key="custom-confirm-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-none"
+            onClick={() => setCustomConfirm(prev => ({ ...prev, isOpen: false }))}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.98 }}
+              className="bg-white rounded-lg border border-[#E7E2D8] shadow-2xl max-w-sm w-full text-left p-6 space-y-4 relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setCustomConfirm(prev => ({ ...prev, isOpen: false }))}
+                className="absolute top-4 right-4 text-[#8C8375] hover:text-[#1C1917] w-7 h-7 rounded-full bg-[#FAF9F5] flex items-center justify-center border border-[#E7E2D8] transition-all cursor-pointer"
+                aria-label="Cancel confirmation"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              <div className="space-y-2">
+                <span className="text-[9px] uppercase tracking-widest text-[#C5A880] font-extrabold block">System Confirmation</span>
+                <h3 className="font-serif text-lg font-bold text-[#1C1917]">{customConfirm.title}</h3>
+                <p className="text-xs text-[#60564C] leading-relaxed font-light">
+                  {customConfirm.message}
+                </p>
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setCustomConfirm(prev => ({ ...prev, isOpen: false }))}
+                  className="flex-1 bg-[#FAF9F5] hover:bg-[#EAE5D9]/40 border border-[#E7E2D8] text-[#1C1917] py-2.5 text-xs font-semibold rounded transition-colors cursor-pointer text-center font-sans"
+                >
+                  {customConfirm.cancelText || 'Cancel'}
+                </button>
+                <button
+                  type="button"
+                  onClick={customConfirm.onConfirm}
+                  className={`flex-1 text-white py-2.5 text-xs font-semibold rounded transition-colors cursor-pointer text-center font-sans ${
+                    customConfirm.isDangerous
+                      ? 'bg-red-600 hover:bg-red-700'
+                      : 'bg-[#0B4224] hover:bg-[#08301a]'
+                  }`}
+                >
+                  {customConfirm.confirmText || 'Confirm'}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
