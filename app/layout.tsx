@@ -27,6 +27,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -36,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Vardhhan Hospitality",
     images: [
       {
-        url: "/seo_featured_image.png",
+        url: "https://vardhhan.com/seo_featured_image.png",
         width: 1200,
         height: 630,
         alt: "Vardhhan Hotel - Timeless Luxury and Pure Vegetarian Dining Pavilion",
@@ -47,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vardhhan Hospitality | Boutique Hotel & Pure Veg Kitchen",
     description: "Experience premium boutique suites and organic pure-vegetarian dining curated with heritage and love in Hubballi, Karnataka.",
-    images: ["/seo_featured_image.png"],
+    images: ["https://vardhhan.com/seo_featured_image.png"],
   },
   robots: {
     index: true,

@@ -1,0 +1,128 @@
+<svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Green Ring -->
+  <circle cx="250" cy="250" r="235" stroke="#0B4224" stroke-width="10" />
+  <circle cx="250" cy="250" r="230" stroke="#0B4224" stroke-width="2" />
+  
+  <!-- Inner Elegant Gold Ring -->
+  <circle cx="250" cy="250" r="220" stroke="#C5A880" stroke-width="3" />
+  <circle cx="250" cy="250" r="215" stroke="#C5A880" stroke-width="1" stroke-dasharray="3 3" />
+  
+  <!-- Chef Hat at the top inside the ring -->
+  <g id="chef-hat" transform="translate(0, -5)">
+    <path 
+      d="M205,95 C195,95 190,80 200,60 C210,40 230,35 250,45 C270,35 290,40 300,60 C310,80 305,95 295,95 Z" 
+      fill="#FAF9F5" 
+      stroke="#C5A880" 
+      stroke-width="4" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+    />
+    <path d="M228,85 C228,65 235,55 240,50" stroke="#C5A880" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M250,90 C250,70 255,55 256,48" stroke="#C5A880" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M272,85 C272,65 265,55 260,50" stroke="#C5A880" stroke-width="2.5" stroke-linecap="round" />
+    
+    <path 
+      d="M203,90 L297,90 L292,105 L208,105 Z" 
+      fill="#0B4224" 
+      stroke="#C5A880" 
+      stroke-width="3.5" 
+      stroke-linejoin="round" 
+    />
+  </g>
+  
+  <!-- Big Central 'V' -->
+  <g id="letter-v" transform="translate(0, 5)">
+    <path 
+      d="M140,115 L215,115 L260,305 L230,305 Z" 
+      fill="#0B4224" 
+    />
+    <path 
+      d="M192,115 L208,115 L252,295 L242,295 Z" 
+      fill="#C5A880" 
+    />
+    <path 
+      d="M360,115 L285,115 L230,305 L260,305 Z" 
+      fill="#0B4224" 
+    />
+    <path 
+      d="M245,296 C270,250 310,210 370,170" 
+      stroke="#0B4224" 
+      stroke-width="6" 
+      stroke-linecap="round" 
+    />
+    <path 
+      d="M290,260 C290,260 330,230 380,150 C380,150 365,200 320,240 Z" 
+      fill="#0B4224" 
+      stroke="#C5A880" 
+      stroke-width="2.5"
+    />
+    <path d="M315,225 Q335,205 365,175" stroke="#FAF9F5" stroke-width="2" stroke-linecap="round" />
+
+    <path 
+      d="M272,284 C272,284 315,280 375,230 C375,230 350,285 295,294 Z" 
+      fill="#0B4224" 
+      stroke="#C5A880" 
+      stroke-width="2.5"
+    />
+    <path d="M295,280 Q325,270 355,250" stroke="#FAF9F5" stroke-width="2" stroke-linecap="round" />
+  </g>
+  
+  <path 
+    d="M130,305 C200,312 300,312 370,305" 
+    stroke="#0B4224" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+  />
+
+  <text 
+    x="250" 
+    y="360" 
+    fill="#0B4224" 
+    font-family="Playfair Display, Georgia, serif" 
+    font-size="52" 
+    font-weight="800" 
+    letter-spacing="6" 
+    text-anchor="middle"
+  >
+    VARDHHAN
+  </text>
+  
+  <line x1="110" y1="388" x2="160" y2="388" stroke="#C5A880" stroke-width="3" stroke-linecap="round" />
+  <text 
+    x="250" 
+    y="396" 
+    fill="#C5A880" 
+    font-family="Playfair Display, Georgia, serif" 
+    font-size="24" 
+    font-weight="bold" 
+    letter-spacing="8" 
+    text-anchor="middle"
+  >
+    HOTEL
+  </text>
+  <line x1="340" y1="388" x2="390" y2="388" stroke="#C5A880" stroke-width="3" stroke-linecap="round" />
+
+  <g id="bottom-sprout" transform="translate(0, 10)">
+    <path d="M250,420 C245,410 248,395 250,392 C252,395 255,410 250,420 Z" fill="#0B4224" />
+    <path d="M250,420 C240,418 228,410 226,404 C232,403 243,412 250,420 Z" fill="#0B4224" />
+    <path d="M250,420 C260,418 272,410 274,404 C268,403 257,412 250,420 Z" fill="#0B4224" />
+    <circle cx="218" cy="415" r="3" fill="#0B4224" />
+    <circle cx="282" cy="415" r="3" fill="#0B4224" />
+  </g>
+  
+  <path 
+    d="M150,424 C190,442 310,442 350,424" 
+    fill="none" 
+    stroke="#0B4224" 
+    stroke-width="32" 
+    stroke-linecap="round" />
+  <path 
+    id="path-vegetarian" 
+    d="M156,423 C192,440 308,440 344,423" 
+    fill="none" />
+  <text fill="#FAF9F5">
+    <textPath href="#path-vegetarian" startOffset="50%" textAnchor="middle" font-size="18" font-weight="bold" letter-spacing="4">
+      VEGETARIAN
+    </textPath>
+  </text>
+</svg>

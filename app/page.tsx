@@ -396,6 +396,10 @@ export default function HomePage() {
     };
 
     const currentSeo = seoConfig[activeTab] || seoConfig.home;
+    const currentOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://vardhhan.com';
+    const absoluteImage = currentSeo.image.startsWith('http') 
+      ? currentSeo.image 
+      : `${currentOrigin}${currentSeo.image}`;
 
     // Update document title
     document.title = currentSeo.title;
@@ -426,22 +430,22 @@ export default function HomePage() {
     // Update OpenGraph image
     let ogImgMeta = document.querySelector('meta[property="og:image"]');
     if (ogImgMeta) {
-      ogImgMeta.setAttribute('content', currentSeo.image);
+      ogImgMeta.setAttribute('content', absoluteImage);
     } else {
       ogImgMeta = document.createElement('meta');
       ogImgMeta.setAttribute('property', 'og:image');
-      ogImgMeta.setAttribute('content', currentSeo.image);
+      ogImgMeta.setAttribute('content', absoluteImage);
       document.head.appendChild(ogImgMeta);
     }
 
     // Update Twitter image
     let twImgMeta = document.querySelector('meta[name="twitter:image"]');
     if (twImgMeta) {
-      twImgMeta.setAttribute('content', currentSeo.image);
+      twImgMeta.setAttribute('content', absoluteImage);
     } else {
       twImgMeta = document.createElement('meta');
       twImgMeta.setAttribute('name', 'twitter:image');
-      twImgMeta.setAttribute('content', currentSeo.image);
+      twImgMeta.setAttribute('content', absoluteImage);
       document.head.appendChild(twImgMeta);
     }
   }, [activeTab]);
@@ -1049,7 +1053,7 @@ export default function HomePage() {
                 "name": "Vardhhan Hospitality",
                 "description": "Experience premium boutique hospitality, refined suites, Ayurvedic-focused wellness, and exquisite 100% vegetarian culinary dining in Hubballi at Vardhhan Hotel & Kitchen.",
                 "url": "https://vardhhan.com",
-                "logo": "https://vardhhan.com/logo.png",
+                "logo": "https://vardhhan.com/logo.svg",
                 "image": "https://vardhhan.com/seo_featured_image.png",
                 "telephone": "+91-836-235-CARE",
                 "priceRange": "$$$",
